@@ -33,6 +33,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E45160D3295DA55700791D8F /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				E4A9ED7E295DA42200B3CDC2 /* AppDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		E45160D4295DA57800791D8F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E4A9ED82295DA42200B3CDC2 /* Assets.xcassets */,
+				E4A9ED87295DA42200B3CDC2 /* QuitForce.entitlements */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		E45160D5295DA59E00791D8F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E4A9ED84295DA42200B3CDC2 /* Main.storyboard */,
+				E4A9ED80295DA42200B3CDC2 /* ViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E45160D6295DA5A800791D8F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E45160D7295DA5B700791D8F /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		E4A9ED72295DA42200B3CDC2 = {
 			isa = PBXGroup;
 			children = (
@@ -52,11 +92,11 @@
 		E4A9ED7D295DA42200B3CDC2 /* QuitForce */ = {
 			isa = PBXGroup;
 			children = (
-				E4A9ED7E295DA42200B3CDC2 /* AppDelegate.swift */,
-				E4A9ED80295DA42200B3CDC2 /* ViewController.swift */,
-				E4A9ED82295DA42200B3CDC2 /* Assets.xcassets */,
-				E4A9ED84295DA42200B3CDC2 /* Main.storyboard */,
-				E4A9ED87295DA42200B3CDC2 /* QuitForce.entitlements */,
+				E45160D6295DA5A800791D8F /* Model */,
+				E45160D5295DA59E00791D8F /* View */,
+				E45160D7295DA5B700791D8F /* Presenter */,
+				E45160D3295DA55700791D8F /* Application */,
+				E45160D4295DA57800791D8F /* Resources */,
 			);
 			path = QuitForce;
 			sourceTree = "<group>";
@@ -268,7 +308,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = QuitForce/QuitForce.entitlements;
+				CODE_SIGN_ENTITLEMENTS = QuitForce/Resources/QuitForce.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -295,7 +335,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = QuitForce/QuitForce.entitlements;
+				CODE_SIGN_ENTITLEMENTS = QuitForce/Resources/QuitForce.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
