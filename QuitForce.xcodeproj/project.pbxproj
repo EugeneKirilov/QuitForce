@@ -95,10 +95,10 @@
 		E4A9ED7D295DA42200B3CDC2 /* QuitForce */ = {
 			isa = PBXGroup;
 			children = (
+				E45160D3295DA55700791D8F /* Application */,
 				E45160D6295DA5A800791D8F /* Model */,
 				E45160D5295DA59E00791D8F /* View */,
 				E45160D7295DA5B700791D8F /* Presenter */,
-				E45160D3295DA55700791D8F /* Application */,
 				E45160D4295DA57800791D8F /* Resources */,
 			);
 			path = QuitForce;
