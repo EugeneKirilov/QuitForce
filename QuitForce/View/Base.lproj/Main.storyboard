@@ -707,12 +707,12 @@
             <objects>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <viewController id="XfG-lQ-9wD" customClass="AppViewController" customModule="QuitForce" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="680" height="470"/>
+                    <view key="view" misplaced="YES" id="m2S-Jp-Qdl">
+                        <rect key="frame" x="0.0" y="0.0" width="680" height="413"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="VNg-OH-I1c">
-                                <rect key="frame" x="-3" y="401" width="686" height="80"/>
+                                <rect key="frame" x="-3" y="316" width="686" height="80"/>
                                 <view key="contentView" id="NTf-Hi-ZMj">
                                     <rect key="frame" x="3" y="3" width="680" height="62"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -728,7 +728,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </searchFieldCell>
                                         </searchField>
-                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IB7-gN-P99">
+                                        <button horizontalHuggingPriority="249" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IB7-gN-P99">
                                             <rect key="frame" x="220" y="14" width="90" height="32"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="76" id="v4h-KP-6Xm"/>
@@ -756,7 +756,6 @@
                                         </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="yh9-Kw-qSn" firstAttribute="leading" secondItem="IB7-gN-P99" secondAttribute="trailing" constant="260" id="Cic-wX-DE9"/>
                                         <constraint firstItem="MWn-nv-hjY" firstAttribute="leading" secondItem="NTf-Hi-ZMj" secondAttribute="leading" constant="20" symbolic="YES" id="Ivq-2I-0ps"/>
                                         <constraint firstItem="IB7-gN-P99" firstAttribute="top" secondItem="NTf-Hi-ZMj" secondAttribute="top" constant="21" id="JPX-PQ-FNu"/>
                                         <constraint firstItem="MWn-nv-hjY" firstAttribute="top" secondItem="NTf-Hi-ZMj" secondAttribute="top" constant="20" symbolic="YES" id="Ygv-ew-02V"/>
@@ -769,15 +768,14 @@
                                     <constraint firstAttribute="height" constant="76" id="3Tv-v7-V69"/>
                                 </constraints>
                             </box>
-                            <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="55" horizontalPageScroll="10" verticalLineScroll="55" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FZS-7L-2Ge">
-                                <rect key="frame" x="0.0" y="0.0" width="680" height="404"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <scrollView autohidesScrollers="YES" horizontalLineScroll="55" horizontalPageScroll="10" verticalLineScroll="55" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FZS-7L-2Ge">
+                                <rect key="frame" x="0.0" y="0.0" width="680" height="320"/>
                                 <clipView key="contentView" drawsBackground="NO" id="3Nd-DS-Qk7">
-                                    <rect key="frame" x="1" y="1" width="678" height="402"/>
+                                    <rect key="frame" x="1" y="1" width="678" height="318"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" rowHeight="55" rowSizeStyle="automatic" headerView="U7N-bi-DrX" viewBased="YES" id="lb1-IE-uwU">
-                                            <rect key="frame" x="0.0" y="0.0" width="678" height="374"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="678" height="290"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="17" height="0.0"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -873,7 +871,11 @@
                             </scrollView>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="FZS-7L-2Ge" firstAttribute="top" secondItem="VNg-OH-I1c" secondAttribute="bottom" id="JW9-pQ-yyi"/>
+                            <constraint firstAttribute="trailing" secondItem="FZS-7L-2Ge" secondAttribute="trailing" id="MyN-5a-9JH"/>
+                            <constraint firstItem="FZS-7L-2Ge" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="RPe-GH-5nu"/>
                             <constraint firstItem="VNg-OH-I1c" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="-11" id="SgW-i9-Gww"/>
+                            <constraint firstAttribute="bottom" secondItem="FZS-7L-2Ge" secondAttribute="bottom" id="Vz8-6s-BG9"/>
                             <constraint firstItem="VNg-OH-I1c" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="dpm-nF-aGm"/>
                             <constraint firstAttribute="trailing" secondItem="VNg-OH-I1c" secondAttribute="trailing" id="piL-J5-hbV"/>
                         </constraints>
