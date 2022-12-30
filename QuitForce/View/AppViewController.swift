@@ -43,7 +43,7 @@ class AppViewController: NSViewController {
     }
     
     private func setupTableView() {
-        
+        tableView.headerView = nil
     }
     
     private func setupDelegates() {
@@ -61,12 +61,19 @@ class AppViewController: NSViewController {
 
 // MARK: - NSTableViewDataSource
 extension AppViewController: NSTableViewDataSource {
-    
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        5
+    }
+//    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+//        <#code#>
+//    }
 }
 
 // MARK: - NSTableViewDelegate
 extension AppViewController: NSTableViewDelegate {
-    
+    func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
+        false
+    }
 }
 
 
