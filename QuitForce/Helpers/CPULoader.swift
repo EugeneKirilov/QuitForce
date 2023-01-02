@@ -28,6 +28,7 @@ final class CPULoader: CPULoaderProtocol {
         task.executableURL = URL(fileURLWithPath: "/bin/zsh")
         task.standardInput = nil
 
+        print(task.description)
         try task.run()
         
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
