@@ -7,7 +7,7 @@
 
 import Cocoa
 
-class TableViewCell: NSTableCellView {
+final class TableViewCell: NSTableCellView {
 
     @IBOutlet var checkbox: NSButton!
     @IBOutlet var iconImageView: NSImageView!

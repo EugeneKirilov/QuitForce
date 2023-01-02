@@ -7,7 +7,7 @@
 
 import Cocoa
 
-class AppViewController: NSViewController {
+final class AppViewController: NSViewController {
 
     @IBOutlet var searchField: NSSearchField!
     @IBOutlet var selectAllButton: NSButton!

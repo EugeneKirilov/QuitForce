@@ -13,6 +13,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var statusBarItem: NSStatusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        let moduleBuilder = ModuleBuilder()
+        moduleBuilder.createMain()
+        
         guard let statusButton = statusBarItem.button else { return }
         statusButton.image = NSImage(named: "OnButton")
     }
