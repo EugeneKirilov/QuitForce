@@ -17,7 +17,7 @@ class AppViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupTextField()
+        setupSearchField()
         setupAllButton()
         setupQuitButton()
         setupTableView()
@@ -30,16 +30,18 @@ class AppViewController: NSViewController {
         }
     }
     
-    private func setupTextField() {
-        
+    private func setupSearchField() {
+        searchField.placeholderString = "Type application name"
     }
     
     private func setupAllButton() {
-        
+        selectAllButton.title = "Select all"
     }
     
     private func setupQuitButton() {
-        
+        forceQuitButton.title = "Force quit"
+        forceQuitButton.isEnabled = false
+        forceQuitButton.bezelColor = .lightGray
     }
     
     private func setupTableView() {
@@ -53,9 +55,11 @@ class AppViewController: NSViewController {
     
     
     @IBAction func selectAllButtonTapped(_ sender: NSButton) {
+        print("selectAllButtonTapped")
     }
     
     @IBAction func forceQuitButtonTapped(_ sender: NSButton) {
+        print("forceQuitButtonTapped")
     }
 }
 

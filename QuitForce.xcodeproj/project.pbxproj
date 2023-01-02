@@ -12,6 +12,7 @@
 		E4A9ED81295DA42200B3CDC2 /* AppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A9ED80295DA42200B3CDC2 /* AppViewController.swift */; };
 		E4A9ED83295DA42200B3CDC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4A9ED82295DA42200B3CDC2 /* Assets.xcassets */; };
 		E4A9ED86295DA42200B3CDC2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4A9ED84295DA42200B3CDC2 /* Main.storyboard */; };
+		E4B409E82962BCF300B0219F /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B409E72962BCF300B0219F /* TableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		E4A9ED82295DA42200B3CDC2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E4A9ED85295DA42200B3CDC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E4A9ED87295DA42200B3CDC2 /* QuitForce.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QuitForce.entitlements; sourceTree = "<group>"; };
+		E4B409E72962BCF300B0219F /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 			children = (
 				E4A9ED84295DA42200B3CDC2 /* Main.storyboard */,
 				E4A9ED80295DA42200B3CDC2 /* AppViewController.swift */,
+				E4B409E72962BCF300B0219F /* TableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -175,6 +178,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4A9ED81295DA42200B3CDC2 /* AppViewController.swift in Sources */,
+				E4B409E82962BCF300B0219F /* TableViewCell.swift in Sources */,
 				E45160D9295DA72B00791D8F /* AppModel.swift in Sources */,
 				E4A9ED7F295DA42200B3CDC2 /* AppDelegate.swift in Sources */,
 			);
