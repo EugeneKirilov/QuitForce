@@ -14,6 +14,8 @@ class AppViewController: NSViewController {
     @IBOutlet var forceQuitButton: NSButton!
     @IBOutlet var tableView: NSTableView!
     
+    var presenter: MainPresenterProtocol?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -78,6 +80,11 @@ extension AppViewController: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
         false
     }
+}
+
+// MARK: - AppViewProtocol
+extension AppViewController: AppViewProtocol {
+    
 }
 
 

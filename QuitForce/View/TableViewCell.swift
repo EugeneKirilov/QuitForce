@@ -14,10 +14,22 @@ class TableViewCell: NSTableCellView {
     @IBOutlet var nameLabel: NSTextField!
     @IBOutlet var cpuLabel: NSTextField!
     
+    override init(frame frameRect: NSRect) {
+        super.init(frame: frameRect)
+        
+        setupViews()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
-
-        // Drawing code here.
+    }
+    
+    private func setupViews() {
+        
     }
     
 }
