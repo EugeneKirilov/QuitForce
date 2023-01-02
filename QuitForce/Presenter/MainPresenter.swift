@@ -13,7 +13,7 @@ protocol AppViewProtocol: AnyObject {
 }
 
 protocol MainPresenterProtocol: AnyObject {
-    init(view: AppViewProtocol, cpuLoader: CPULoaderProtocol)
+    init(cpuLoader: CPULoaderProtocol)
     var apps: [AppsListItem]? { get }
     func setUpAppsData()
 }
@@ -23,8 +23,7 @@ final class MainPresenter: MainPresenterProtocol {
     let cpuLoader: CPULoaderProtocol
     var apps: [AppsListItem]?
     
-    init(view: AppViewProtocol, cpuLoader: CPULoaderProtocol) {
-        self.view = view
+    init(cpuLoader: CPULoaderProtocol) {
         self.cpuLoader = cpuLoader
     }
     

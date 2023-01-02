@@ -17,6 +17,15 @@ final class AppViewController: NSViewController {
     private let cellIdentifier = NSUserInterfaceItemIdentifier("tableViewCell")
     var presenter: MainPresenterProtocol?
     
+    init?(coder: NSCoder, presenter: MainPresenterProtocol) {
+        self.presenter = presenter
+        
+        super.init(coder: coder)
+    }
+    
+    required init?(coder aCoder: NSCoder) {
+        super.init(coder: aCoder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,8 +35,11 @@ final class AppViewController: NSViewController {
         setupQuitButton()
         setupTableView()
         setupDelegates()
+    }
+    
+    override func viewDidAppear() {
+        super.viewDidAppear()
         
-        presenter?.setUpAppsData()
     }
 
     override var representedObject: Any? {

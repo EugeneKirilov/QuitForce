@@ -9,14 +9,13 @@ import Foundation
 import Cocoa
 
 protocol Builder {
-    func createMain()
+    func createMain() -> MainPresenter
 }
 
 final class ModuleBuilder: Builder {
-    func createMain() {
-        let view = AppViewController()
+    func createMain() -> MainPresenter {
         let cpuLoader = CPULoader()
-        let presenter = MainPresenter(view: view, cpuLoader: cpuLoader)
-        view.presenter = presenter
+        let presenter = MainPresenter(cpuLoader: cpuLoader)
+        return presenter
     }
 }

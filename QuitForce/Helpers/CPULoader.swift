@@ -17,6 +17,7 @@ final class CPULoader: CPULoaderProtocol {
 
     private var arrayForCSV: [Dictionary<String, String>] = Array()
     
+    @discardableResult
     private func safeShell(_ command: String) throws -> String {
         let task = Process()
         let pipe = Pipe()
@@ -95,10 +96,10 @@ final class CPULoader: CPULoaderProtocol {
     func getCPU() -> [[String: String]] {
         makeArrayForCSV()
         createCSV(from: arrayForCSV)
-        let data = readDataFromCSV(fileName: "CSVQuitForce.csv") ?? "none"
+        let data = readDataFromCSV(fileName: "CSVQuitForce.csv")
         
         var result: [[String: String]] = []
-        let rows = data.components(separatedBy: "\n")
+        let rows = data!.components(separatedBy: "\n")
         for row in rows {
             let newRow = row.replacingOccurrences(of: " ", with: "")
             let columns = newRow.components(separatedBy: CharacterSet(charactersIn: ","))
@@ -108,6 +109,7 @@ final class CPULoader: CPULoaderProtocol {
             result.append(dictionary)
         }
         result.removeLast()
+        print(result)
         return result
     }
 }
