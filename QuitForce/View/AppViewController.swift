@@ -7,21 +7,39 @@
 
 import Cocoa
 
-class AppViewController: NSViewController {
+final class AppViewController: NSViewController {
 
     @IBOutlet var searchField: NSSearchField!
     @IBOutlet var selectAllButton: NSButton!
     @IBOutlet var forceQuitButton: NSButton!
     @IBOutlet var tableView: NSTableView!
     
+    private let cellIdentifier = NSUserInterfaceItemIdentifier("tableViewCell")
+    var presenter: MainPresenterProtocol?
+    
+    init?(coder: NSCoder, presenter: MainPresenterProtocol) {
+        self.presenter = presenter
+        
+        super.init(coder: coder)
+    }
+    
+    required init?(coder aCoder: NSCoder) {
+        super.init(coder: aCoder)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupTextField()
+        setupSearchField()
         setupAllButton()
         setupQuitButton()
         setupTableView()
         setupDelegates()
+    }
+    
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        
     }
 
     override var representedObject: Any? {
@@ -30,16 +48,18 @@ class AppViewController: NSViewController {
         }
     }
     
-    private func setupTextField() {
-        
+    private func setupSearchField() {
+        searchField.placeholderString = "Type application name"
     }
     
     private func setupAllButton() {
-        
+        selectAllButton.title = "Select all"
     }
     
     private func setupQuitButton() {
-        
+        forceQuitButton.title = "Force quit"
+        forceQuitButton.isEnabled = false
+        forceQuitButton.bezelColor = .lightGray
     }
     
     private func setupTableView() {
@@ -53,20 +73,26 @@ class AppViewController: NSViewController {
     
     
     @IBAction func selectAllButtonTapped(_ sender: NSButton) {
+        print("selectAllButtonTapped")
     }
     
     @IBAction func forceQuitButtonTapped(_ sender: NSButton) {
+        print("forceQuitButtonTapped")
     }
 }
 
 // MARK: - NSTableViewDataSource
 extension AppViewController: NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
-        5
+        10
     }
-//    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-//        <#code#>
-//    }
+    
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        guard let cell = tableView.makeView(withIdentifier: cellIdentifier, owner: nil) as? TableViewCell else { return nil }
+        cell.cpuLabel.stringValue = "0.0 % CPU"
+        cell.nameLabel.stringValue = "Terminal"
+        return cell
+    }
 }
 
 // MARK: - NSTableViewDelegate
@@ -74,6 +100,14 @@ extension AppViewController: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
         false
     }
+    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
+        60
+    }
+}
+
+// MARK: - AppViewProtocol
+extension AppViewController: AppViewProtocol {
+    
 }
 
 
