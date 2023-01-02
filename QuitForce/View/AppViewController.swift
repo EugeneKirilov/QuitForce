@@ -26,6 +26,8 @@ final class AppViewController: NSViewController {
         setupQuitButton()
         setupTableView()
         setupDelegates()
+        
+        presenter?.setUpAppsData()
     }
 
     override var representedObject: Any? {

@@ -15,7 +15,8 @@ protocol Builder {
 final class ModuleBuilder: Builder {
     func createMain() {
         let view = AppViewController()
-        let presenter = MainPresenter(view: view)
+        let cpuLoader = CPULoader()
+        let presenter = MainPresenter(view: view, cpuLoader: cpuLoader)
         view.presenter = presenter
     }
 }
