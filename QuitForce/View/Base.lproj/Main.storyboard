@@ -793,7 +793,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView identifier="TableViewCell" id="HUl-jL-xwq" customClass="TableViewCell" customModule="QuitForce" customModuleProvider="target">
+                                                        <tableCellView identifier="tableViewCell" id="HUl-jL-xwq" customClass="TableViewCell" customModule="QuitForce" customModuleProvider="target">
                                                             <rect key="frame" x="8" y="0.0" width="661" height="55"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
@@ -821,7 +821,7 @@
                                                                         </textField>
                                                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1uy-0u-L00">
                                                                             <rect key="frame" x="140" y="17" width="37" height="16"/>
-                                                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="A9R-yZ-xd5">
+                                                                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Label" id="A9R-yZ-xd5">
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

@@ -14,7 +14,9 @@ class AppViewController: NSViewController {
     @IBOutlet var forceQuitButton: NSButton!
     @IBOutlet var tableView: NSTableView!
     
+    private let cellIdentifier = NSUserInterfaceItemIdentifier("tableViewCell")
     var presenter: MainPresenterProtocol?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,17 +70,24 @@ class AppViewController: NSViewController {
 // MARK: - NSTableViewDataSource
 extension AppViewController: NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
-        5
+        10
     }
-//    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-//        <#code#>
-//    }
+    
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        guard let cell = tableView.makeView(withIdentifier: cellIdentifier, owner: nil) as? TableViewCell else { return nil }
+        cell.cpuLabel.stringValue = "0.0 % CPU"
+        cell.nameLabel.stringValue = "Terminal"
+        return cell
+    }
 }
 
 // MARK: - NSTableViewDelegate
 extension AppViewController: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
         false
+    }
+    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
+        60
     }
 }
 
