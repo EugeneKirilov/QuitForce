@@ -15,6 +15,7 @@
 		E4B409E82962BCF300B0219F /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B409E72962BCF300B0219F /* TableViewCell.swift */; };
 		E4B409EA2962C3E900B0219F /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B409E92962C3E900B0219F /* MainPresenter.swift */; };
 		E4B409ED2962C9BD00B0219F /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B409EC2962C9BD00B0219F /* ModuleBuilder.swift */; };
+		E4B409EF2962D31700B0219F /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B409EE2962D31700B0219F /* Logger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		E4B409E72962BCF300B0219F /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		E4B409E92962C3E900B0219F /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		E4B409EC2962C9BD00B0219F /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
+		E4B409EE2962D31700B0219F /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				E4B409EC2962C9BD00B0219F /* ModuleBuilder.swift */,
+				E4B409EE2962D31700B0219F /* Logger.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -195,6 +198,7 @@
 				E4A9ED81295DA42200B3CDC2 /* AppViewController.swift in Sources */,
 				E4B409E82962BCF300B0219F /* TableViewCell.swift in Sources */,
 				E45160D9295DA72B00791D8F /* AppModel.swift in Sources */,
+				E4B409EF2962D31700B0219F /* Logger.swift in Sources */,
 				E4A9ED7F295DA42200B3CDC2 /* AppDelegate.swift in Sources */,
 				E4B409ED2962C9BD00B0219F /* ModuleBuilder.swift in Sources */,
 			);
