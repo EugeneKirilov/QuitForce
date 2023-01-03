@@ -47,7 +47,7 @@ final class CPULoader: CPULoaderProtocol {
             try cpus = safeShell("ps -eo %cpu").components(separatedBy: "\n").map { $0.trimmingCharacters(in: .whitespaces)}
         }
         catch let error {
-            print(error.localizedDescription)
+            Log.error(error.localizedDescription)
         }
         
         var index = 0
@@ -75,7 +75,7 @@ final class CPULoader: CPULoaderProtocol {
             let fileURL = path.appendingPathComponent("CSVQuitForce.csv")
             try csvString.write(to: fileURL, atomically: true, encoding: .utf8)
         } catch {
-            print("error creating file")
+            Log.error("Error creating file")
         }
     }
 
@@ -88,7 +88,7 @@ final class CPULoader: CPULoaderProtocol {
             let contents = try String(contentsOf: fileURL, encoding: .utf8)
             return contents
         } catch {
-            print("File Read Error for file \(fileName)")
+            Log.error("File Read Error for file \(fileName)")
             return nil
         }
     }
