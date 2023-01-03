@@ -36,6 +36,7 @@ final class AppViewController: NSViewController {
         setupQuitButton()
         setupTableView()
         setupDelegates()
+        presenter?.setupTimer()
     }
     
     override func viewDidAppear() {

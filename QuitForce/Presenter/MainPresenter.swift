@@ -28,6 +28,7 @@ protocol MainPresenterProtocol: AnyObject {
     func forceQuitApps()
     func tapOnSelectAllButton()
     func searchApps()
+    func setupTimer()
 }
 
 final class MainPresenter: MainPresenterProtocol {
@@ -123,5 +124,17 @@ final class MainPresenter: MainPresenterProtocol {
             self.apps = searchedAppsArray
         }
         self.view?.updateSuccessful()
+    }
+    
+    func setupTimer() {
+        DispatchQueue.global(qos: .background).async {
+            Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { [weak self] _ in
+                DispatchQueue.main.async {
+                    self?.setUpAppsData()
+                    self?.view?.updateSuccessful()
+                }
+            }
+            RunLoop.current.run()
+        }
     }
 }
