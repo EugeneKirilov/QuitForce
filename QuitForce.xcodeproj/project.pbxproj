@@ -17,6 +17,7 @@
 		E4B409ED2962C9BD00B0219F /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B409EC2962C9BD00B0219F /* ModuleBuilder.swift */; };
 		E4B409EF2962D31700B0219F /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B409EE2962D31700B0219F /* Logger.swift */; };
 		E4B409F12962D6FA00B0219F /* CPULoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B409F02962D6FA00B0219F /* CPULoader.swift */; };
+		E4EC7A33296455FB000D320D /* NSMenu + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EC7A32296455FB000D320D /* NSMenu + Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		E4B409EC2962C9BD00B0219F /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
 		E4B409EE2962D31700B0219F /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		E4B409F02962D6FA00B0219F /* CPULoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPULoader.swift; sourceTree = "<group>"; };
+		E4EC7A32296455FB000D320D /* NSMenu + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMenu + Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				E45160D5295DA59E00791D8F /* View */,
 				E45160D7295DA5B700791D8F /* Presenter */,
 				E4B409EB2962C98B00B0219F /* Helpers */,
+				E4EC7A2D29645579000D320D /* Extensions */,
 				E45160D4295DA57800791D8F /* Resources */,
 			);
 			path = QuitForce;
@@ -125,6 +128,14 @@
 				E4B409F02962D6FA00B0219F /* CPULoader.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		E4EC7A2D29645579000D320D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E4EC7A32296455FB000D320D /* NSMenu + Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,6 +209,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4B409EA2962C3E900B0219F /* MainPresenter.swift in Sources */,
+				E4EC7A33296455FB000D320D /* NSMenu + Extension.swift in Sources */,
 				E4B409F12962D6FA00B0219F /* CPULoader.swift in Sources */,
 				E4A9ED81295DA42200B3CDC2 /* AppViewController.swift in Sources */,
 				E4B409E82962BCF300B0219F /* TableViewCell.swift in Sources */,
