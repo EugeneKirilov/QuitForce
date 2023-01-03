@@ -10,6 +10,7 @@ import Cocoa
 
 protocol AppViewProtocol: AnyObject {
     func isActivateQuitButton(flag: Bool)
+    func isSelectAllButton(flag: Bool)
     func terminateSuccessful()
 }
 
@@ -56,6 +57,7 @@ final class MainPresenter: MainPresenterProtocol {
             guard let app = appListItem else { return }
             self.quitingApps.remove(at: self.quitingApps.firstIndex { $0.app == app.app } ?? 0 )
         }
+        quitingApps.count == apps?.count ? view?.isSelectAllButton(flag: false) : view?.isSelectAllButton(flag: true)
         quitingApps.isEmpty ? view?.isActivateQuitButton(flag: false) : view?.isActivateQuitButton(flag: true)
     }
     
@@ -75,6 +77,7 @@ final class MainPresenter: MainPresenterProtocol {
                 apps = apps?.filter { $0.app != appForQuit.app }
             }
             quitingApps = []
+            view?.isActivateQuitButton(flag: false)
             view?.terminateSuccessful()
         }
     }

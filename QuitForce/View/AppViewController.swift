@@ -15,6 +15,7 @@ final class AppViewController: NSViewController {
     @IBOutlet var tableView: NSTableView!
     
     private let cellIdentifier = NSUserInterfaceItemIdentifier("tableViewCell")
+    private var cells = [TableViewCell]()
     var presenter: MainPresenterProtocol?
     
     init?(coder: NSCoder, presenter: MainPresenterProtocol) {
@@ -71,8 +72,20 @@ final class AppViewController: NSViewController {
     
     
     @IBAction func selectAllButtonTapped(_ sender: NSButton) {
-        print("selectAllButtonTapped")
+        if cells.count == cells.filter({ $0.checkbox.state == .on }).count {
+            selectAllButton.title = "Select all"
         
+            for cell in cells where cell.checkbox.state == .on {
+                cell.checkbox.state = .off
+                presenter?.appCheck(appListItem: &cell.app, presenter: &cell.presenter)
+            }
+        } else {
+            selectAllButton.title = "Deselect all"
+            for cell in cells where cell.checkbox.state == .off {
+                cell.checkbox.state = .on
+                presenter?.appCheck(appListItem: &cell.app, presenter: &cell.presenter)
+            }
+        }
     }
     
     @IBAction func forceQuitButtonTapped(_ sender: NSButton) {
@@ -90,6 +103,7 @@ extension AppViewController: NSTableViewDataSource {
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         guard let cell = tableView.makeView(withIdentifier: cellIdentifier, owner: nil) as? TableViewCell else { return nil }
         guard let apps = presenter?.apps else { return nil }
+        cells.append(cell)
         cell.checkbox.state = .off
         cell.presenter = self.presenter
         cell.app = apps[row]
@@ -123,7 +137,16 @@ extension AppViewController: AppViewProtocol {
         }
     }
     
+    func isSelectAllButton(flag: Bool) {
+        if flag {
+            selectAllButton.title = "Select all"
+        } else {
+            selectAllButton.title = "Deselect all"
+        }
+    }
+    
     func terminateSuccessful() {
+        cells = []
         tableView.reloadData()
     }
 }
