@@ -54,7 +54,7 @@ final class MainPresenter: MainPresenterProtocol {
         } else {
             appListItem?.toggleSelection()
             guard let app = appListItem else { return }
-            self.quitingApps.remove(at: self.quitingApps.firstIndex { $0.app == app.app }! )
+            self.quitingApps.remove(at: self.quitingApps.firstIndex { $0.app == app.app } ?? 0 )
         }
         quitingApps.isEmpty ? view?.isActivateQuitButton(flag: false) : view?.isActivateQuitButton(flag: true)
     }
@@ -78,6 +78,4 @@ final class MainPresenter: MainPresenterProtocol {
             view?.terminateSuccessful()
         }
     }
-    
-    
 }
