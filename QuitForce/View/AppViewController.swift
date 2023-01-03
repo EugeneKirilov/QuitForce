@@ -43,9 +43,7 @@ final class AppViewController: NSViewController {
     }
 
     override var representedObject: Any? {
-        didSet {
-        // Update the view, if already loaded.
-        }
+        didSet {}
     }
     
     private func setupSearchField() {
@@ -91,6 +89,8 @@ extension AppViewController: NSTableViewDataSource {
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         guard let cell = tableView.makeView(withIdentifier: cellIdentifier, owner: nil) as? TableViewCell else { return nil }
         guard let apps = presenter?.apps else { return nil }
+        cell.presenter = self.presenter
+        cell.app = apps[row]
         cell.cpuLabel.stringValue = apps[row].app.cpu + "% CPU"
         cell.nameLabel.stringValue = apps[row].app.name
         cell.iconImageView.image = apps[row].app.icon
