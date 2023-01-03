@@ -9,6 +9,8 @@ import Foundation
 import Cocoa
 
 protocol AppViewProtocol: AnyObject {
+    var cells: [TableViewCell] { get set }
+    var selectAllButton: NSButton! { get set }
     func isActivateQuitButton(flag: Bool)
     func isSelectAllButton(flag: Bool)
     func terminateSuccessful()
@@ -22,6 +24,7 @@ protocol MainPresenterProtocol: AnyObject {
     func setUpAppsData()
     func appCheck(appListItem: inout AppsListItem?, presenter: inout MainPresenterProtocol?)
     func forceQuitApps()
+    func tapOnSelectAllButton()
 }
 
 final class MainPresenter: MainPresenterProtocol {
@@ -79,6 +82,24 @@ final class MainPresenter: MainPresenterProtocol {
             quitingApps = []
             view?.isActivateQuitButton(flag: false)
             view?.terminateSuccessful()
+        }
+    }
+    
+    func tapOnSelectAllButton() {
+        guard let view = view else  { return }
+        if view.cells.count == view.cells.filter({ $0.checkbox.state == .on }).count {
+            view.selectAllButton.title = "Select all"
+        
+            for cell in view.cells where cell.checkbox.state == .on {
+                cell.checkbox.state = .off
+                appCheck(appListItem: &cell.app, presenter: &cell.presenter)
+            }
+        } else {
+            view.selectAllButton.title = "Deselect all"
+            for cell in view.cells where cell.checkbox.state == .off {
+                cell.checkbox.state = .on
+                appCheck(appListItem: &cell.app, presenter: &cell.presenter)
+            }
         }
     }
 }

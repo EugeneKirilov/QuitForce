@@ -15,7 +15,7 @@ final class AppViewController: NSViewController {
     @IBOutlet var tableView: NSTableView!
     
     private let cellIdentifier = NSUserInterfaceItemIdentifier("tableViewCell")
-    private var cells = [TableViewCell]()
+    var cells = [TableViewCell]()
     var presenter: MainPresenterProtocol?
     
     init?(coder: NSCoder, presenter: MainPresenterProtocol) {
@@ -72,20 +72,7 @@ final class AppViewController: NSViewController {
     
     
     @IBAction func selectAllButtonTapped(_ sender: NSButton) {
-        if cells.count == cells.filter({ $0.checkbox.state == .on }).count {
-            selectAllButton.title = "Select all"
-        
-            for cell in cells where cell.checkbox.state == .on {
-                cell.checkbox.state = .off
-                presenter?.appCheck(appListItem: &cell.app, presenter: &cell.presenter)
-            }
-        } else {
-            selectAllButton.title = "Deselect all"
-            for cell in cells where cell.checkbox.state == .off {
-                cell.checkbox.state = .on
-                presenter?.appCheck(appListItem: &cell.app, presenter: &cell.presenter)
-            }
-        }
+        presenter?.tapOnSelectAllButton()
     }
     
     @IBAction func forceQuitButtonTapped(_ sender: NSButton) {
@@ -127,6 +114,7 @@ extension AppViewController: NSTableViewDelegate {
 
 // MARK: - AppViewProtocol
 extension AppViewController: AppViewProtocol {
+    
     func isActivateQuitButton(flag: Bool) {
         if flag {
             forceQuitButton.isEnabled = true
