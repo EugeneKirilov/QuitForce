@@ -14,10 +14,11 @@ final class TableViewCell: NSTableCellView {
     @IBOutlet var nameLabel: NSTextField!
     @IBOutlet var cpuLabel: NSTextField!
     
+    var presenter: MainPresenterProtocol?
+    var app: AppsListItem?
+    
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
-        
-        setupViews()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -28,8 +29,8 @@ final class TableViewCell: NSTableCellView {
         super.draw(dirtyRect)
     }
     
-    private func setupViews() {
-        
+    @IBAction func checkboxTapped(_ sender: NSButton) {
+        presenter?.appCheck(appListItem: &app, presenter: &presenter)
     }
     
 }

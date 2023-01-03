@@ -11,6 +11,7 @@ public struct App: Equatable {
     var name: String
     var icon: NSImage
     var cpu: String
+    var pid: String
 }
 
 public struct AppsListItem {

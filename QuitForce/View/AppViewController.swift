@@ -15,6 +15,7 @@ final class AppViewController: NSViewController {
     @IBOutlet var tableView: NSTableView!
     
     private let cellIdentifier = NSUserInterfaceItemIdentifier("tableViewCell")
+    var cells = [TableViewCell]()
     var presenter: MainPresenterProtocol?
     
     init?(coder: NSCoder, presenter: MainPresenterProtocol) {
@@ -35,6 +36,7 @@ final class AppViewController: NSViewController {
         setupQuitButton()
         setupTableView()
         setupDelegates()
+        presenter?.setupTimer()
     }
     
     override func viewDidAppear() {
@@ -43,9 +45,7 @@ final class AppViewController: NSViewController {
     }
 
     override var representedObject: Any? {
-        didSet {
-        // Update the view, if already loaded.
-        }
+        didSet {}
     }
     
     private func setupSearchField() {
@@ -71,26 +71,37 @@ final class AppViewController: NSViewController {
         tableView.delegate = self
     }
     
+    @IBAction func searchPrograms(_ sender: NSSearchField) {
+        presenter?.appSearchString = searchField.stringValue
+        presenter?.searchApps()
+    }
     
     @IBAction func selectAllButtonTapped(_ sender: NSButton) {
-        print("selectAllButtonTapped")
+        presenter?.tapOnSelectAllButton()
     }
     
     @IBAction func forceQuitButtonTapped(_ sender: NSButton) {
-        print("forceQuitButtonTapped")
+        presenter?.forceQuitApps()
     }
 }
 
 // MARK: - NSTableViewDataSource
 extension AppViewController: NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
-        10
+        guard let apps = presenter?.apps else { return 0 }
+        return apps.count
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         guard let cell = tableView.makeView(withIdentifier: cellIdentifier, owner: nil) as? TableViewCell else { return nil }
-        cell.cpuLabel.stringValue = "0.0 % CPU"
-        cell.nameLabel.stringValue = "Terminal"
+        guard let apps = presenter?.apps else { return nil }
+        cells.append(cell)
+        cell.checkbox.state = .off
+        cell.presenter = self.presenter
+        cell.app = apps[row]
+        cell.cpuLabel.stringValue = apps[row].app.cpu + "% CPU"
+        cell.nameLabel.stringValue = apps[row].app.name
+        cell.iconImageView.image = apps[row].app.icon
         return cell
     }
 }
@@ -100,6 +111,7 @@ extension AppViewController: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
         false
     }
+    
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
         60
     }
@@ -108,6 +120,28 @@ extension AppViewController: NSTableViewDelegate {
 // MARK: - AppViewProtocol
 extension AppViewController: AppViewProtocol {
     
+    func isActivateQuitButton(flag: Bool) {
+        if flag {
+            forceQuitButton.isEnabled = true
+            forceQuitButton.bezelColor = .systemBlue
+        } else {
+            forceQuitButton.isEnabled = false
+            forceQuitButton.bezelColor = .lightGray
+        }
+    }
+    
+    func isSelectAllButton(flag: Bool) {
+        if flag {
+            selectAllButton.title = "Select all"
+        } else {
+            selectAllButton.title = "Deselect all"
+        }
+    }
+    
+    func updateSuccessful() {
+        cells = []
+        tableView.reloadData()
+    }
 }
 
 
