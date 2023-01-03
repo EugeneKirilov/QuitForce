@@ -13,7 +13,7 @@ protocol AppViewProtocol: AnyObject {
     var selectAllButton: NSButton! { get set }
     func isActivateQuitButton(flag: Bool)
     func isSelectAllButton(flag: Bool)
-    func terminateSuccessful()
+    func updateSuccessful()
 }
 
 protocol MainPresenterProtocol: AnyObject {
@@ -21,10 +21,13 @@ protocol MainPresenterProtocol: AnyObject {
     var view: AppViewProtocol? { get set }
     var apps: [AppsListItem]? { get }
     var quitingApps: [AppsListItem] { get set }
+    var appSearchString: String? { get set }
     func setUpAppsData()
-    func appCheck(appListItem: inout AppsListItem?, presenter: inout MainPresenterProtocol?)
+    func appCheck(appListItem: inout AppsListItem?,
+                  presenter: inout MainPresenterProtocol?)
     func forceQuitApps()
     func tapOnSelectAllButton()
+    func searchApps()
 }
 
 final class MainPresenter: MainPresenterProtocol {
@@ -32,6 +35,9 @@ final class MainPresenter: MainPresenterProtocol {
     let cpuLoader: CPULoaderProtocol
     var apps: [AppsListItem]?
     var quitingApps = [AppsListItem]()
+    var appSearchString: String?
+    
+    private var temporaryApps = [AppsListItem]()
     
     init(cpuLoader: CPULoaderProtocol) {
         self.cpuLoader = cpuLoader
@@ -48,6 +54,7 @@ final class MainPresenter: MainPresenterProtocol {
                                                     cpu: cpuCount ?? "No data",
                                                     pid: String(app.processIdentifier))))
         }
+        temporaryApps = apps ?? [AppsListItem]()
     }
     
     func appCheck(appListItem: inout AppsListItem?, presenter: inout MainPresenterProtocol?) {
@@ -78,10 +85,11 @@ final class MainPresenter: MainPresenterProtocol {
             }
             for appForQuit in quitingApps {
                 apps = apps?.filter { $0.app != appForQuit.app }
+                temporaryApps = apps ?? [AppsListItem]()
             }
             quitingApps = []
             view?.isActivateQuitButton(flag: false)
-            view?.terminateSuccessful()
+            view?.updateSuccessful()
         }
     }
     
@@ -101,5 +109,19 @@ final class MainPresenter: MainPresenterProtocol {
                 appCheck(appListItem: &cell.app, presenter: &cell.presenter)
             }
         }
+    }
+    
+    func searchApps() {
+        guard let appSearchString = appSearchString else {
+            apps = temporaryApps
+            return
+        }
+        
+        var searchedAppsArray = [AppsListItem]()
+        for appItem in temporaryApps where appItem.app.name.lowercased().hasPrefix(appSearchString.lowercased()) {
+            searchedAppsArray.append(appItem)
+            self.apps = searchedAppsArray
+        }
+        self.view?.updateSuccessful()
     }
 }

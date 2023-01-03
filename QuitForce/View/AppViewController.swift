@@ -70,6 +70,10 @@ final class AppViewController: NSViewController {
         tableView.delegate = self
     }
     
+    @IBAction func searchPrograms(_ sender: NSSearchField) {
+        presenter?.appSearchString = searchField.stringValue
+        presenter?.searchApps()
+    }
     
     @IBAction func selectAllButtonTapped(_ sender: NSButton) {
         presenter?.tapOnSelectAllButton()
@@ -133,7 +137,7 @@ extension AppViewController: AppViewProtocol {
         }
     }
     
-    func terminateSuccessful() {
+    func updateSuccessful() {
         cells = []
         tableView.reloadData()
     }

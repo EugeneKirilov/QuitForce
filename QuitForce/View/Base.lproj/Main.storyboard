@@ -709,12 +709,12 @@
             <objects>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="AppViewController" id="XfG-lQ-9wD" customClass="AppViewController" customModule="QuitForce" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="680" height="413"/>
+                    <view key="view" misplaced="YES" id="m2S-Jp-Qdl">
+                        <rect key="frame" x="0.0" y="0.0" width="680" height="385"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="VNg-OH-I1c">
-                                <rect key="frame" x="-3" y="344" width="686" height="80"/>
+                                <rect key="frame" x="-3" y="316" width="686" height="80"/>
                                 <view key="contentView" id="NTf-Hi-ZMj">
                                     <rect key="frame" x="3" y="3" width="680" height="62"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -724,11 +724,14 @@
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="199" id="VW5-kC-2Um"/>
                                             </constraints>
-                                            <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="1u1-At-LVb">
+                                            <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" sendsSearchStringImmediately="YES" id="1u1-At-LVb">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </searchFieldCell>
+                                            <connections>
+                                                <action selector="searchPrograms:" target="XfG-lQ-9wD" id="e7o-5C-zU1"/>
+                                            </connections>
                                         </searchField>
                                         <button horizontalHuggingPriority="249" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IB7-gN-P99">
                                             <rect key="frame" x="220" y="14" width="90" height="32"/>
@@ -771,13 +774,13 @@
                                 </constraints>
                             </box>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="55" horizontalPageScroll="10" verticalLineScroll="55" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FZS-7L-2Ge">
-                                <rect key="frame" x="0.0" y="0.0" width="680" height="347"/>
+                                <rect key="frame" x="0.0" y="0.0" width="680" height="319"/>
                                 <clipView key="contentView" drawsBackground="NO" id="3Nd-DS-Qk7">
-                                    <rect key="frame" x="1" y="1" width="678" height="345"/>
+                                    <rect key="frame" x="1" y="1" width="678" height="317"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" rowHeight="55" rowSizeStyle="automatic" headerView="U7N-bi-DrX" viewBased="YES" id="lb1-IE-uwU">
-                                            <rect key="frame" x="0.0" y="0.0" width="678" height="317"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="678" height="289"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="17" height="0.0"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
