@@ -84,13 +84,16 @@ final class AppViewController: NSViewController {
 // MARK: - NSTableViewDataSource
 extension AppViewController: NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
-        10
+        guard let apps = presenter?.apps else { return 0 }
+        return apps.count
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         guard let cell = tableView.makeView(withIdentifier: cellIdentifier, owner: nil) as? TableViewCell else { return nil }
-        cell.cpuLabel.stringValue = "0.0 % CPU"
-        cell.nameLabel.stringValue = "Terminal"
+        guard let apps = presenter?.apps else { return nil }
+        cell.cpuLabel.stringValue = apps[row].app.cpu + "% CPU"
+        cell.nameLabel.stringValue = apps[row].app.name
+        cell.iconImageView.image = apps[row].app.icon
         return cell
     }
 }
