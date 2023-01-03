@@ -21,6 +21,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             AppViewController(coder: coder, presenter: moduleBuilder.createMain())
         })
         appViewController.presenter?.setUpAppsData()
+        appViewController.presenter?.view = appViewController
         window.contentViewController = appViewController
         window.showWindow(self)
         

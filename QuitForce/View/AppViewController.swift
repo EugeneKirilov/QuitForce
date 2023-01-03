@@ -72,10 +72,11 @@ final class AppViewController: NSViewController {
     
     @IBAction func selectAllButtonTapped(_ sender: NSButton) {
         print("selectAllButtonTapped")
+        
     }
     
     @IBAction func forceQuitButtonTapped(_ sender: NSButton) {
-        print("forceQuitButtonTapped")
+        presenter?.forceQuitApps()
     }
 }
 
@@ -89,6 +90,7 @@ extension AppViewController: NSTableViewDataSource {
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         guard let cell = tableView.makeView(withIdentifier: cellIdentifier, owner: nil) as? TableViewCell else { return nil }
         guard let apps = presenter?.apps else { return nil }
+        cell.checkbox.state = .off
         cell.presenter = self.presenter
         cell.app = apps[row]
         cell.cpuLabel.stringValue = apps[row].app.cpu + "% CPU"
@@ -103,6 +105,7 @@ extension AppViewController: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
         false
     }
+    
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
         60
     }
@@ -110,7 +113,19 @@ extension AppViewController: NSTableViewDelegate {
 
 // MARK: - AppViewProtocol
 extension AppViewController: AppViewProtocol {
+    func isActivateQuitButton(flag: Bool) {
+        if flag {
+            forceQuitButton.isEnabled = true
+            forceQuitButton.bezelColor = .systemBlue
+        } else {
+            forceQuitButton.isEnabled = false
+            forceQuitButton.bezelColor = .lightGray
+        }
+    }
     
+    func terminateSuccessful() {
+        tableView.reloadData()
+    }
 }
 
 
