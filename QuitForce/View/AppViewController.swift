@@ -96,7 +96,6 @@ extension AppViewController: NSTableViewDataSource {
         guard let cell = tableView.makeView(withIdentifier: cellIdentifier, owner: nil) as? TableViewCell else { return nil }
         guard let apps = presenter?.apps else { return nil }
         cells.append(cell)
-        cell.checkbox.state = .off
         cell.presenter = self.presenter
         cell.app = apps[row]
         cell.cpuLabel.stringValue = apps[row].app.cpu + "% CPU"

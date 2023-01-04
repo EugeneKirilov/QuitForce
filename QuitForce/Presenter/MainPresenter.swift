@@ -55,6 +55,7 @@ final class MainPresenter: MainPresenterProtocol {
                                                     cpu: cpuCount ?? "No data",
                                                     pid: String(app.processIdentifier))))
         }
+        apps = apps?.sorted { $0.app.name.lowercased() < $1.app.name.lowercased() }
         temporaryApps = apps ?? [AppsListItem]()
     }
     
@@ -89,6 +90,7 @@ final class MainPresenter: MainPresenterProtocol {
                 temporaryApps = apps ?? [AppsListItem]()
             }
             quitingApps = []
+            view?.cells.forEach { $0.checkbox.state = .off }
             view?.isActivateQuitButton(flag: false)
             view?.updateSuccessful()
         }
