@@ -71,18 +71,32 @@ final class MainPresenter: MainPresenterProtocol {
         if appListItem?.isSelected == false {
             appListItem?.setSelected(true)
             guard let app = appListItem else { return }
+            
             let appIndex = apps?.firstIndex { $0.app.name == app.app.name }
             if let appIndex = appIndex {
                 apps?[appIndex] = app
             }
+            
+            let appIndexTmp = temporaryApps.firstIndex { $0.app.name == app.app.name }
+            if let appIndexTmp = appIndexTmp {
+                temporaryApps[appIndexTmp] = app
+            }
+            
             self.quitingApps.append(app)
         } else {
             appListItem?.toggleSelection()
             guard let app = appListItem else { return }
+            
             let appIndex = apps?.firstIndex { $0.app.name == app.app.name }
             if let appIndex = appIndex {
                 apps?[appIndex] = app
             }
+            
+            let appIndexTmp = temporaryApps.firstIndex { $0.app.name == app.app.name }
+            if let appIndexTmp = appIndexTmp {
+                temporaryApps[appIndexTmp] = app
+            }
+            
             self.quitingApps.remove(at: self.quitingApps.firstIndex { $0.app == app.app } ?? 0 )
         }
         buttonsCheck()
