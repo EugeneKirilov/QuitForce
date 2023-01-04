@@ -15,7 +15,7 @@ public struct App: Equatable {
 }
 
 public struct AppsListItem {
-    let app: App
+    var app: App
     var isSelected: Bool = false
     
     mutating func setSelected(_ isSelected: Bool) {

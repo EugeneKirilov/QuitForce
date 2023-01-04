@@ -9,6 +9,7 @@ import Foundation
 import AppKit
 
 extension NSMenu {
+    
     func addSeparator() -> Void {
         addItem(.separator())
     }

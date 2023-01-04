@@ -38,11 +38,6 @@ final class AppViewController: NSViewController {
         setupDelegates()
         presenter?.setupTimer()
     }
-    
-    override func viewDidAppear() {
-        super.viewDidAppear()
-        
-    }
 
     override var representedObject: Any? {
         didSet {}
@@ -95,12 +90,23 @@ extension AppViewController: NSTableViewDataSource {
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         guard let cell = tableView.makeView(withIdentifier: cellIdentifier, owner: nil) as? TableViewCell else { return nil }
         guard let apps = presenter?.apps else { return nil }
-        cells.append(cell)
+        cell.checkbox.state = .off
+        let flag = presenter?.selectionCheck(appListItem: apps[row])
+        
+        if flag == true {
+            cell.checkbox.state = .on
+            presenter?.apps?[row].setSelected(true)
+        } else {
+            cell.checkbox.state = .off
+            presenter?.apps?[row].setSelected(false)
+        }
+
         cell.presenter = self.presenter
         cell.app = apps[row]
         cell.cpuLabel.stringValue = apps[row].app.cpu + "% CPU"
         cell.nameLabel.stringValue = apps[row].app.name
         cell.iconImageView.image = apps[row].app.icon
+        cells.append(cell)
         return cell
     }
 }

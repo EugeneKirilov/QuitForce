@@ -19,7 +19,7 @@ protocol AppViewProtocol: AnyObject {
 protocol MainPresenterProtocol: AnyObject {
     init(cpuLoader: CPULoaderProtocol, timerSetupper: TimerSetupperProtocol)
     var view: AppViewProtocol? { get set }
-    var apps: [AppsListItem]? { get }
+    var apps: [AppsListItem]? { get set }
     var quitingApps: [AppsListItem] { get set }
     var appSearchString: String? { get set }
     func setUpAppsData()
@@ -29,6 +29,7 @@ protocol MainPresenterProtocol: AnyObject {
     func tapOnSelectAllButton()
     func searchApps()
     func setupTimer()
+    func selectionCheck(appListItem: AppsListItem) -> Bool
 }
 
 final class MainPresenter: MainPresenterProtocol {
@@ -61,18 +62,30 @@ final class MainPresenter: MainPresenterProtocol {
         temporaryApps = apps ?? [AppsListItem]()
     }
     
+    private func buttonsCheck() {
+        quitingApps.count == apps?.count ? view?.isSelectAllButton(flag: false) : view?.isSelectAllButton(flag: true)
+        quitingApps.isEmpty ? view?.isActivateQuitButton(flag: false) : view?.isActivateQuitButton(flag: true)
+    }
+    
     func appCheck(appListItem: inout AppsListItem?, presenter: inout MainPresenterProtocol?) {
         if appListItem?.isSelected == false {
             appListItem?.setSelected(true)
             guard let app = appListItem else { return }
+            let appIndex = apps?.firstIndex { $0.app.name == app.app.name }
+            if let appIndex = appIndex {
+                apps?[appIndex] = app
+            }
             self.quitingApps.append(app)
         } else {
             appListItem?.toggleSelection()
             guard let app = appListItem else { return }
+            let appIndex = apps?.firstIndex { $0.app.name == app.app.name }
+            if let appIndex = appIndex {
+                apps?[appIndex] = app
+            }
             self.quitingApps.remove(at: self.quitingApps.firstIndex { $0.app == app.app } ?? 0 )
         }
-        quitingApps.count == apps?.count ? view?.isSelectAllButton(flag: false) : view?.isSelectAllButton(flag: true)
-        quitingApps.isEmpty ? view?.isActivateQuitButton(flag: false) : view?.isActivateQuitButton(flag: true)
+        buttonsCheck()
     }
     
     private func isReadyForQuiting() -> Bool {
@@ -130,11 +143,50 @@ final class MainPresenter: MainPresenterProtocol {
         self.view?.updateSuccessful()
     }
     
+    private func updateAppsData() {
+        let openApps = NSWorkspace.shared.runningApplications
+        let cpus = cpuLoader.getCPU()
+        var tmpArray = [AppsListItem]()
+        for app in openApps where app.activationPolicy == .regular {
+            let cpuCount = cpus.filter{ $0[String(app.processIdentifier)] != nil }.first?.values.joined()
+            let appListItem = AppsListItem(app: App(name: app.localizedName ?? "No data",
+                                                    icon: app.icon ?? NSImage(),
+                                                    cpu: cpuCount ?? "No data",
+                                                    pid: String(app.processIdentifier)))
+            tmpArray.append(appListItem)
+            let appIndex = apps?.firstIndex { $0.app.name == appListItem.app.name }
+            if let appIndex = appIndex {
+                apps?[appIndex].app = appListItem.app
+            }
+            if !(apps?.contains { $0.app.name == appListItem.app.name } ?? false) {
+                apps?.append(appListItem)
+            }
+            if tmpArray.count < apps?.count ?? 0 {
+                
+            }
+        }
+        apps = apps?.sorted { $0.app.name.lowercased() < $1.app.name.lowercased() }
+        temporaryApps = apps ?? [AppsListItem]()
+    }
+    
+    func selectionCheck(appListItem: AppsListItem) -> Bool {
+        if appListItem.isSelected {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     func setupTimer() {
         timerSetupper.setupTimer { [weak self] in
             guard let self = self else { return }
-            self.setUpAppsData()
-            self.view?.updateSuccessful()
+            if self.apps?.count ?? 0 < self.temporaryApps.count {
+                self.updateAppsData()
+                self.searchApps()
+            } else {
+                self.updateAppsData()
+                self.view?.updateSuccessful()
+            }
         }
     }
 }
