@@ -72,7 +72,7 @@ final class AppViewController: NSViewController {
     }
     
     @IBAction func selectAllButtonTapped(_ sender: NSButton) {
-        presenter?.tapOnSelectAllButton()
+        presenter?.tapOnSelectAllButton(cells: &cells)
     }
     
     @IBAction func forceQuitButtonTapped(_ sender: NSButton) {
@@ -89,6 +89,7 @@ extension AppViewController: NSTableViewDataSource {
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         guard let cell = tableView.makeView(withIdentifier: cellIdentifier, owner: nil) as? TableViewCell else { return nil }
+        cells.append(cell)
         guard let apps = presenter?.apps else { return nil }
         cell.checkbox.state = .off
         let flag = presenter?.selectionCheck(appListItem: apps[row])
@@ -102,8 +103,8 @@ extension AppViewController: NSTableViewDataSource {
         cell.cpuLabel.stringValue = apps[row].app.cpu + "% CPU"
         cell.nameLabel.stringValue = apps[row].app.name
         cell.iconImageView.image = apps[row].app.icon
-        cells.append(cell)
-        return cell
+        print(cells.count)
+        return cell as NSView
     }
 }
 
@@ -140,7 +141,7 @@ extension AppViewController: AppViewProtocol {
     }
     
     func updateSuccessful() {
-        cells = []
+//        cells = []
         tableView.reloadData()
     }
 }

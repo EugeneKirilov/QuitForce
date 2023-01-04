@@ -26,7 +26,7 @@ protocol MainPresenterProtocol: AnyObject {
     func appCheck(appListItem: inout AppsListItem?,
                   presenter: inout MainPresenterProtocol?)
     func forceQuitApps()
-    func tapOnSelectAllButton()
+    func tapOnSelectAllButton(cells: inout [TableViewCell])
     func searchApps()
     func setupTimer()
     func selectionCheck(appListItem: AppsListItem) -> Bool
@@ -125,20 +125,24 @@ final class MainPresenter: MainPresenterProtocol {
         }
     }
     
-    func tapOnSelectAllButton() {
-        guard let view = view else  { return }
-        if view.cells.count == view.cells.filter({ $0.checkbox.state == .on }).count {
+    func tapOnSelectAllButton(cells: inout [TableViewCell]) {
+        guard let view = view else { return }
+        if cells.count == cells.filter({ $0.checkbox.state == .on }).count {
             view.selectAllButton.title = "Select all"
         
-            for cell in view.cells where cell.checkbox.state == .on {
+            for cell in cells {
                 cell.checkbox.state = .off
-                appCheck(appListItem: &cell.app, presenter: &cell.presenter)
+                if cell.app?.isSelected == true {
+                    appCheck(appListItem: &cell.app, presenter: &cell.presenter)
+                }
             }
         } else {
             view.selectAllButton.title = "Deselect all"
-            for cell in view.cells where cell.checkbox.state == .off {
+            for cell in cells {
                 cell.checkbox.state = .on
-                appCheck(appListItem: &cell.app, presenter: &cell.presenter)
+                if cell.app?.isSelected == false {
+                    appCheck(appListItem: &cell.app, presenter: &cell.presenter)
+                }
             }
         }
     }
@@ -168,9 +172,9 @@ final class MainPresenter: MainPresenterProtocol {
                                                     cpu: cpuCount ?? "No data",
                                                     pid: String(app.processIdentifier)))
             tmpArray.append(appListItem)
-            let appIndex = apps?.firstIndex { $0.app.name == appListItem.app.name }
+            let appIndex = apps?.firstIndex { $0.app.pid == appListItem.app.pid }
             if let appIndex = appIndex {
-                apps?[appIndex].app = appListItem.app
+                apps?[appIndex].app.cpu = appListItem.app.cpu
             }
             if !(apps?.contains { $0.app.name == appListItem.app.name } ?? false) {
                 apps?.append(appListItem)
@@ -194,6 +198,7 @@ final class MainPresenter: MainPresenterProtocol {
     func setupTimer() {
         timerSetupper.setupTimer { [weak self] in
             guard let self = self else { return }
+            self.view?.cells = []
             if self.apps?.count ?? 0 < self.temporaryApps.count {
                 self.updateAppsData()
                 self.searchApps()
