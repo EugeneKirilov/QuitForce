@@ -95,10 +95,6 @@ extension AppViewController: NSTableViewDataSource {
         
         if flag == true {
             cell.checkbox.state = .on
-            presenter?.apps?[row].setSelected(true)
-        } else {
-            cell.checkbox.state = .off
-            presenter?.apps?[row].setSelected(false)
         }
 
         cell.presenter = self.presenter
