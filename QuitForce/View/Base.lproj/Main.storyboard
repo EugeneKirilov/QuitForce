@@ -688,10 +688,10 @@
                     <window key="window" title="QuitForce" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" fullScreenNone="YES"/>
-                        <rect key="contentRect" x="500" y="250" width="680" height="470"/>
+                        <rect key="contentRect" x="500" y="250" width="780" height="470"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
-                        <value key="minSize" type="size" width="680" height="470"/>
-                        <value key="maxSize" type="size" width="680" height="470"/>
+                        <value key="minSize" type="size" width="780" height="470"/>
+                        <value key="maxSize" type="size" width="780" height="470"/>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
                         </connections>
@@ -709,12 +709,12 @@
             <objects>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="AppViewController" id="XfG-lQ-9wD" customClass="AppViewController" customModule="QuitForce" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" misplaced="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="680" height="385"/>
+                    <view key="view" id="m2S-Jp-Qdl">
+                        <rect key="frame" x="0.0" y="0.0" width="680" height="422"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="VNg-OH-I1c">
-                                <rect key="frame" x="-3" y="260" width="686" height="80"/>
+                                <rect key="frame" x="-3" y="352" width="686" height="80"/>
                                 <view key="contentView" id="NTf-Hi-ZMj">
                                     <rect key="frame" x="3" y="3" width="680" height="62"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -774,13 +774,13 @@
                                 </constraints>
                             </box>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="55" horizontalPageScroll="10" verticalLineScroll="55" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FZS-7L-2Ge">
-                                <rect key="frame" x="0.0" y="0.0" width="680" height="263"/>
+                                <rect key="frame" x="0.0" y="0.0" width="680" height="354"/>
                                 <clipView key="contentView" drawsBackground="NO" id="3Nd-DS-Qk7">
-                                    <rect key="frame" x="1" y="1" width="678" height="261"/>
+                                    <rect key="frame" x="1" y="1" width="678" height="352"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" rowHeight="55" rowSizeStyle="automatic" headerView="U7N-bi-DrX" viewBased="YES" id="lb1-IE-uwU">
-                                            <rect key="frame" x="0.0" y="0.0" width="678" height="233"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="678" height="324"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="17" height="0.0"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -895,10 +895,10 @@
                             </scrollView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="FZS-7L-2Ge" firstAttribute="top" secondItem="VNg-OH-I1c" secondAttribute="bottom" constant="1" id="JW9-pQ-yyi"/>
+                            <constraint firstItem="FZS-7L-2Ge" firstAttribute="top" secondItem="VNg-OH-I1c" secondAttribute="bottom" constant="2" id="JW9-pQ-yyi"/>
                             <constraint firstAttribute="trailing" secondItem="FZS-7L-2Ge" secondAttribute="trailing" id="MyN-5a-9JH"/>
                             <constraint firstItem="FZS-7L-2Ge" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="RPe-GH-5nu"/>
-                            <constraint firstItem="VNg-OH-I1c" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="-11" id="SgW-i9-Gww"/>
+                            <constraint firstItem="VNg-OH-I1c" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="-10" id="SgW-i9-Gww"/>
                             <constraint firstAttribute="bottom" secondItem="FZS-7L-2Ge" secondAttribute="bottom" id="Vz8-6s-BG9"/>
                             <constraint firstItem="VNg-OH-I1c" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="dpm-nF-aGm"/>
                             <constraint firstAttribute="trailing" secondItem="VNg-OH-I1c" secondAttribute="trailing" id="piL-J5-hbV"/>
@@ -912,7 +912,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="75" y="786.5"/>
+            <point key="canvasLocation" x="75" y="826"/>
         </scene>
     </scenes>
 </document>

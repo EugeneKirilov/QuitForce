@@ -17,7 +17,7 @@ protocol AppViewProtocol: AnyObject {
 }
 
 protocol MainPresenterProtocol: AnyObject {
-    init(cpuLoader: CPULoaderProtocol)
+    init(cpuLoader: CPULoaderProtocol, timerSetupper: TimerSetupperProtocol)
     var view: AppViewProtocol? { get set }
     var apps: [AppsListItem]? { get }
     var quitingApps: [AppsListItem] { get set }
@@ -34,14 +34,16 @@ protocol MainPresenterProtocol: AnyObject {
 final class MainPresenter: MainPresenterProtocol {
     weak var view: AppViewProtocol?
     let cpuLoader: CPULoaderProtocol
+    let timerSetupper: TimerSetupperProtocol
     var apps: [AppsListItem]?
     var quitingApps = [AppsListItem]()
     var appSearchString: String?
     
     private var temporaryApps = [AppsListItem]()
     
-    init(cpuLoader: CPULoaderProtocol) {
+    init(cpuLoader: CPULoaderProtocol, timerSetupper: TimerSetupperProtocol) {
         self.cpuLoader = cpuLoader
+        self.timerSetupper = timerSetupper
     }
     
     func setUpAppsData() {
@@ -129,14 +131,10 @@ final class MainPresenter: MainPresenterProtocol {
     }
     
     func setupTimer() {
-        DispatchQueue.global(qos: .background).async {
-            Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { [weak self] _ in
-                DispatchQueue.main.async {
-                    self?.setUpAppsData()
-                    self?.view?.updateSuccessful()
-                }
-            }
-            RunLoop.current.run()
+        timerSetupper.setupTimer { [weak self] in
+            guard let self = self else { return }
+            self.setUpAppsData()
+            self.view?.updateSuccessful()
         }
     }
 }
