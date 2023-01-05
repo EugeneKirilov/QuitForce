@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E40EA18229655CC30055C297 /* TimerSetupper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40EA18129655CC30055C297 /* TimerSetupper.swift */; };
 		E45160D9295DA72B00791D8F /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45160D8295DA72B00791D8F /* AppModel.swift */; };
 		E4A9ED7F295DA42200B3CDC2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A9ED7E295DA42200B3CDC2 /* AppDelegate.swift */; };
 		E4A9ED81295DA42200B3CDC2 /* AppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A9ED80295DA42200B3CDC2 /* AppViewController.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E40EA18129655CC30055C297 /* TimerSetupper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSetupper.swift; sourceTree = "<group>"; };
 		E45160D8295DA72B00791D8F /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		E4A9ED7B295DA42200B3CDC2 /* QuitForce.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuitForce.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4A9ED7E295DA42200B3CDC2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				E4B409EC2962C9BD00B0219F /* ModuleBuilder.swift */,
 				E4B409EE2962D31700B0219F /* Logger.swift */,
 				E4B409F02962D6FA00B0219F /* CPULoader.swift */,
+				E40EA18129655CC30055C297 /* TimerSetupper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 				E4B409F12962D6FA00B0219F /* CPULoader.swift in Sources */,
 				E4A9ED81295DA42200B3CDC2 /* AppViewController.swift in Sources */,
 				E4B409E82962BCF300B0219F /* TableViewCell.swift in Sources */,
+				E40EA18229655CC30055C297 /* TimerSetupper.swift in Sources */,
 				E45160D9295DA72B00791D8F /* AppModel.swift in Sources */,
 				E4B409EF2962D31700B0219F /* Logger.swift in Sources */,
 				E4A9ED7F295DA42200B3CDC2 /* AppDelegate.swift in Sources */,

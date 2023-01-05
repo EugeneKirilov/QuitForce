@@ -15,7 +15,8 @@ protocol Builder {
 final class ModuleBuilder: Builder {
     func createMain() -> MainPresenter {
         let cpuLoader = CPULoader()
-        let presenter = MainPresenter(cpuLoader: cpuLoader)
+        let timerSetupper = TimerSetupper()
+        let presenter = MainPresenter(cpuLoader: cpuLoader, timerSetupper: timerSetupper)
         return presenter
     }
 }

@@ -37,10 +37,11 @@ final class CPULoader: CPULoaderProtocol {
     }
     
     private func makeArrayForCSV() {
+        arrayForCSV = []
         do {
             try pids = safeShell("ps -eo pid").components(separatedBy: "\n").map { $0.trimmingCharacters(in: .whitespaces)}
         } catch let error {
-            print(error.localizedDescription)
+            Log.error(error.localizedDescription)
         }
 
         do {

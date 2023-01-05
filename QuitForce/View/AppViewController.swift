@@ -39,15 +39,6 @@ final class AppViewController: NSViewController {
         presenter?.setupTimer()
     }
     
-    override func viewDidAppear() {
-        super.viewDidAppear()
-        
-    }
-
-    override var representedObject: Any? {
-        didSet {}
-    }
-    
     private func setupSearchField() {
         searchField.placeholderString = "Type application name"
     }
@@ -77,7 +68,7 @@ final class AppViewController: NSViewController {
     }
     
     @IBAction func selectAllButtonTapped(_ sender: NSButton) {
-        presenter?.tapOnSelectAllButton()
+        presenter?.tapOnSelectAllButton(cells: &cells)
     }
     
     @IBAction func forceQuitButtonTapped(_ sender: NSButton) {
@@ -94,9 +85,15 @@ extension AppViewController: NSTableViewDataSource {
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         guard let cell = tableView.makeView(withIdentifier: cellIdentifier, owner: nil) as? TableViewCell else { return nil }
-        guard let apps = presenter?.apps else { return nil }
         cells.append(cell)
+        guard let apps = presenter?.apps else { return nil }
         cell.checkbox.state = .off
+        let flag = presenter?.selectionCheck(appListItem: apps[row])
+        
+        if flag == true {
+            cell.checkbox.state = .on
+        }
+
         cell.presenter = self.presenter
         cell.app = apps[row]
         cell.cpuLabel.stringValue = apps[row].app.cpu + "% CPU"
@@ -119,7 +116,6 @@ extension AppViewController: NSTableViewDelegate {
 
 // MARK: - AppViewProtocol
 extension AppViewController: AppViewProtocol {
-    
     func isActivateQuitButton(flag: Bool) {
         if flag {
             forceQuitButton.isEnabled = true
@@ -139,7 +135,6 @@ extension AppViewController: AppViewProtocol {
     }
     
     func updateSuccessful() {
-        cells = []
         tableView.reloadData()
     }
 }
