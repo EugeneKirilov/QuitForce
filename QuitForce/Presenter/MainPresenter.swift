@@ -23,6 +23,7 @@ protocol MainPresenterProtocol: AnyObject {
     var quitingApps: [AppsListItem] { get set }
     var appSearchString: String? { get set }
     func setUpAppsData()
+    func buttonsCheck()
     func appCheck(appListItem: inout AppsListItem?,
                   presenter: inout MainPresenterProtocol?)
     func forceQuitApps()
@@ -41,6 +42,7 @@ final class MainPresenter: MainPresenterProtocol {
     var appSearchString: String?
     
     private var temporaryApps = [AppsListItem]()
+    private var appsBefore = [AppsListItem]()
     
     init(cpuLoader: CPULoaderProtocol, timerSetupper: TimerSetupperProtocol) {
         self.cpuLoader = cpuLoader
@@ -62,7 +64,7 @@ final class MainPresenter: MainPresenterProtocol {
         temporaryApps = apps ?? [AppsListItem]()
     }
     
-    private func buttonsCheck() {
+    func buttonsCheck() {
         quitingApps.count == apps?.count ? view?.isSelectAllButton(flag: false) : view?.isSelectAllButton(flag: true)
         quitingApps.isEmpty ? view?.isActivateQuitButton(flag: false) : view?.isActivateQuitButton(flag: true)
     }
@@ -82,6 +84,11 @@ final class MainPresenter: MainPresenterProtocol {
                 temporaryApps[appIndexTmp] = app
             }
             
+            let appIndexBefore = appsBefore.firstIndex { $0.app.name == app.app.name }
+            if let appIndexBefore = appIndexBefore {
+                appsBefore[appIndexBefore] = app
+            }
+            
             self.quitingApps.append(app)
         } else {
             appListItem?.toggleSelection()
@@ -95,6 +102,11 @@ final class MainPresenter: MainPresenterProtocol {
             let appIndexTmp = temporaryApps.firstIndex { $0.app.name == app.app.name }
             if let appIndexTmp = appIndexTmp {
                 temporaryApps[appIndexTmp] = app
+            }
+            
+            let appIndexBefore = appsBefore.firstIndex { $0.app.name == app.app.name }
+            if let appIndexBefore = appIndexBefore {
+                appsBefore[appIndexBefore] = app
             }
             
             self.quitingApps.remove(at: self.quitingApps.firstIndex { $0.app == app.app } ?? 0 )
@@ -150,6 +162,7 @@ final class MainPresenter: MainPresenterProtocol {
     func searchApps() {
         guard let appSearchString = appSearchString else {
             apps = temporaryApps
+            buttonsCheck()
             return
         }
         
@@ -157,6 +170,7 @@ final class MainPresenter: MainPresenterProtocol {
         for appItem in temporaryApps where appItem.app.name.lowercased().hasPrefix(appSearchString.lowercased()) {
             searchedAppsArray.append(appItem)
             self.apps = searchedAppsArray
+            buttonsCheck()
         }
         self.view?.updateSuccessful()
     }
@@ -165,6 +179,7 @@ final class MainPresenter: MainPresenterProtocol {
         let openApps = NSWorkspace.shared.runningApplications
         let cpus = cpuLoader.getCPU()
         var tmpArray = [AppsListItem]()
+        
         for app in openApps where app.activationPolicy == .regular {
             let cpuCount = cpus.filter{ $0[String(app.processIdentifier)] != nil }.first?.values.joined()
             let appListItem = AppsListItem(app: App(name: app.localizedName ?? "No data",
@@ -172,17 +187,25 @@ final class MainPresenter: MainPresenterProtocol {
                                                     cpu: cpuCount ?? "No data",
                                                     pid: String(app.processIdentifier)))
             tmpArray.append(appListItem)
+
             let appIndex = apps?.firstIndex { $0.app.pid == appListItem.app.pid }
+            
             if let appIndex = appIndex {
                 apps?[appIndex].app.cpu = appListItem.app.cpu
             }
+            
             if !(apps?.contains { $0.app.name == appListItem.app.name } ?? false) {
+                if let apps = apps {
+                    appsBefore = apps
+                }
                 apps?.append(appListItem)
             }
-            if tmpArray.count < apps?.count ?? 0 {
-                
-            }
         }
+        
+        if tmpArray.count < apps?.count ?? 0 {
+            apps = appsBefore
+        }
+        
         apps = apps?.sorted { $0.app.name.lowercased() < $1.app.name.lowercased() }
         temporaryApps = apps ?? [AppsListItem]()
     }

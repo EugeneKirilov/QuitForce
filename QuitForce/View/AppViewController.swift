@@ -103,8 +103,7 @@ extension AppViewController: NSTableViewDataSource {
         cell.cpuLabel.stringValue = apps[row].app.cpu + "% CPU"
         cell.nameLabel.stringValue = apps[row].app.name
         cell.iconImageView.image = apps[row].app.icon
-        print(cells.count)
-        return cell as NSView
+        return cell
     }
 }
 

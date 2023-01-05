@@ -14,7 +14,7 @@ public struct App: Equatable {
     var pid: String
 }
 
-public struct AppsListItem {
+public struct AppsListItem: Equatable {
     var app: App
     var isSelected: Bool = false
     
