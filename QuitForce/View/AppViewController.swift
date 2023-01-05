@@ -38,10 +38,6 @@ final class AppViewController: NSViewController {
         setupDelegates()
         presenter?.setupTimer()
     }
-
-    override var representedObject: Any? {
-        didSet {}
-    }
     
     private func setupSearchField() {
         searchField.placeholderString = "Type application name"
@@ -120,7 +116,6 @@ extension AppViewController: NSTableViewDelegate {
 
 // MARK: - AppViewProtocol
 extension AppViewController: AppViewProtocol {
-    
     func isActivateQuitButton(flag: Bool) {
         if flag {
             forceQuitButton.isEnabled = true
@@ -140,7 +135,6 @@ extension AppViewController: AppViewProtocol {
     }
     
     func updateSuccessful() {
-//        cells = []
         tableView.reloadData()
     }
 }

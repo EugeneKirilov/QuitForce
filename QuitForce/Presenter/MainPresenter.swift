@@ -69,46 +69,33 @@ final class MainPresenter: MainPresenterProtocol {
         quitingApps.isEmpty ? view?.isActivateQuitButton(flag: false) : view?.isActivateQuitButton(flag: true)
     }
     
+    private func checkAppsCheckMarks(appListItem: AppsListItem) {
+        let appIndex = apps?.firstIndex { $0.app.name == appListItem.app.name }
+        if let appIndex = appIndex {
+            apps?[appIndex] = appListItem
+        }
+        
+        let appIndexTmp = temporaryApps.firstIndex { $0.app.name == appListItem.app.name }
+        if let appIndexTmp = appIndexTmp {
+            temporaryApps[appIndexTmp] = appListItem
+        }
+        
+        let appIndexBefore = appsBefore.firstIndex { $0.app.name == appListItem.app.name }
+        if let appIndexBefore = appIndexBefore {
+            appsBefore[appIndexBefore] = appListItem
+        }
+    }
+    
     func appCheck(appListItem: inout AppsListItem?, presenter: inout MainPresenterProtocol?) {
         if appListItem?.isSelected == false {
             appListItem?.setSelected(true)
             guard let app = appListItem else { return }
-            
-            let appIndex = apps?.firstIndex { $0.app.name == app.app.name }
-            if let appIndex = appIndex {
-                apps?[appIndex] = app
-            }
-            
-            let appIndexTmp = temporaryApps.firstIndex { $0.app.name == app.app.name }
-            if let appIndexTmp = appIndexTmp {
-                temporaryApps[appIndexTmp] = app
-            }
-            
-            let appIndexBefore = appsBefore.firstIndex { $0.app.name == app.app.name }
-            if let appIndexBefore = appIndexBefore {
-                appsBefore[appIndexBefore] = app
-            }
-            
+            checkAppsCheckMarks(appListItem: app)
             self.quitingApps.append(app)
         } else {
             appListItem?.toggleSelection()
             guard let app = appListItem else { return }
-            
-            let appIndex = apps?.firstIndex { $0.app.name == app.app.name }
-            if let appIndex = appIndex {
-                apps?[appIndex] = app
-            }
-            
-            let appIndexTmp = temporaryApps.firstIndex { $0.app.name == app.app.name }
-            if let appIndexTmp = appIndexTmp {
-                temporaryApps[appIndexTmp] = app
-            }
-            
-            let appIndexBefore = appsBefore.firstIndex { $0.app.name == app.app.name }
-            if let appIndexBefore = appIndexBefore {
-                appsBefore[appIndexBefore] = app
-            }
-            
+            checkAppsCheckMarks(appListItem: app)
             self.quitingApps.remove(at: self.quitingApps.firstIndex { $0.app == app.app } ?? 0 )
         }
         buttonsCheck()
@@ -148,8 +135,10 @@ final class MainPresenter: MainPresenterProtocol {
                     appCheck(appListItem: &cell.app, presenter: &cell.presenter)
                 }
             }
+            
         } else {
             view.selectAllButton.title = "Deselect all"
+            
             for cell in cells {
                 cell.checkbox.state = .on
                 if cell.app?.isSelected == false {
@@ -167,11 +156,13 @@ final class MainPresenter: MainPresenterProtocol {
         }
         
         var searchedAppsArray = [AppsListItem]()
+        
         for appItem in temporaryApps where appItem.app.name.lowercased().hasPrefix(appSearchString.lowercased()) {
             searchedAppsArray.append(appItem)
             self.apps = searchedAppsArray
             buttonsCheck()
         }
+        
         self.view?.updateSuccessful()
     }
     
