@@ -709,12 +709,12 @@
             <objects>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="AppViewController" id="XfG-lQ-9wD" customClass="AppViewController" customModule="QuitForce" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="680" height="422"/>
+                    <view key="view" misplaced="YES" id="m2S-Jp-Qdl">
+                        <rect key="frame" x="0.0" y="0.0" width="680" height="394"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="VNg-OH-I1c">
-                                <rect key="frame" x="-3" y="352" width="686" height="80"/>
+                                <rect key="frame" x="-3" y="296" width="686" height="80"/>
                                 <view key="contentView" id="NTf-Hi-ZMj">
                                     <rect key="frame" x="3" y="3" width="680" height="62"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -774,13 +774,13 @@
                                 </constraints>
                             </box>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="55" horizontalPageScroll="10" verticalLineScroll="55" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FZS-7L-2Ge">
-                                <rect key="frame" x="0.0" y="0.0" width="680" height="354"/>
+                                <rect key="frame" x="0.0" y="0.0" width="680" height="298"/>
                                 <clipView key="contentView" drawsBackground="NO" id="3Nd-DS-Qk7">
-                                    <rect key="frame" x="1" y="1" width="678" height="352"/>
+                                    <rect key="frame" x="1" y="1" width="678" height="296"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" rowHeight="55" rowSizeStyle="automatic" headerView="U7N-bi-DrX" viewBased="YES" id="lb1-IE-uwU">
-                                            <rect key="frame" x="0.0" y="0.0" width="678" height="324"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="678" height="268"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="17" height="0.0"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>

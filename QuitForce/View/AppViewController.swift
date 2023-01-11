@@ -14,7 +14,8 @@ final class AppViewController: NSViewController {
     @IBOutlet var forceQuitButton: NSButton!
     @IBOutlet var tableView: NSTableView!
     
-    private let cellIdentifier = NSUserInterfaceItemIdentifier("tableViewCell")
+    private let cellIdentifier = NSUserInterfaceItemIdentifier(StringConstants.appCellIdentifier.rawValue)
+    
     var cells = [TableViewCell]()
     var presenter: MainPresenterProtocol?
     
@@ -40,15 +41,15 @@ final class AppViewController: NSViewController {
     }
     
     private func setupSearchField() {
-        searchField.placeholderString = "Type application name"
+        searchField.placeholderString = StringConstants.searchFieldPlaceholder.rawValue
     }
     
     private func setupAllButton() {
-        selectAllButton.title = "Select all"
+        selectAllButton.title = StringConstants.selectAllButtonText.rawValue
     }
     
     private func setupQuitButton() {
-        forceQuitButton.title = "Force quit"
+        forceQuitButton.title = StringConstants.forceQuitButtonText.rawValue
         forceQuitButton.isEnabled = false
         forceQuitButton.bezelColor = .lightGray
     }
@@ -85,9 +86,12 @@ extension AppViewController: NSTableViewDataSource {
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         guard let cell = tableView.makeView(withIdentifier: cellIdentifier, owner: nil) as? TableViewCell else { return nil }
-        cells.append(cell)
         guard let apps = presenter?.apps else { return nil }
+        
+        cells.append(cell)
+        
         cell.checkbox.state = .off
+        
         let flag = presenter?.selectionCheck(appListItem: apps[row])
         
         if flag == true {
@@ -96,7 +100,7 @@ extension AppViewController: NSTableViewDataSource {
 
         cell.presenter = self.presenter
         cell.app = apps[row]
-        cell.cpuLabel.stringValue = apps[row].app.cpu + "% CPU"
+        cell.cpuLabel.stringValue = apps[row].app.cpu + StringConstants.percentCPU.rawValue
         cell.nameLabel.stringValue = apps[row].app.name
         cell.iconImageView.image = apps[row].app.icon
         return cell
@@ -110,7 +114,7 @@ extension AppViewController: NSTableViewDelegate {
     }
     
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-        60
+        CGFloatConstants.cellHeight.rawValue
     }
 }
 
@@ -128,9 +132,9 @@ extension AppViewController: AppViewProtocol {
     
     func isSelectAllButton(flag: Bool) {
         if flag {
-            selectAllButton.title = "Select all"
+            selectAllButton.title = StringConstants.selectAllButtonText.rawValue
         } else {
-            selectAllButton.title = "Deselect all"
+            selectAllButton.title = StringConstants.deselectAllButtonText.rawValue
         }
     }
     

@@ -24,92 +24,97 @@ final class CPULoader: CPULoaderProtocol {
         
         task.standardOutput = pipe
         task.standardError = pipe
-        task.arguments = ["-c", command]
-        task.executableURL = URL(fileURLWithPath: "/bin/zsh")
+        task.arguments = [StringConstants.minusCCommand.rawValue, command]
+        task.executableURL = URL(fileURLWithPath: StringConstants.terminalPath.rawValue)
         task.standardInput = nil
 
         try task.run()
         
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
-        let output = String(data: data, encoding: .utf8)!
+        let output = String(data: data, encoding: .utf8) ?? StringConstants.noData.rawValue
         
         return output
     }
     
-    private func makeArrayForCSV() {
-        arrayForCSV = []
+    private func getPidsAndCPUs() {
         do {
-            try pids = safeShell("ps -eo pid").components(separatedBy: "\n").map { $0.trimmingCharacters(in: .whitespaces)}
+            try pids = safeShell(StringConstants.psPidsCommand.rawValue).components(separatedBy: StringConstants.emptySeparator.rawValue).map { $0.trimmingCharacters(in: .whitespaces) }
+            try cpus = safeShell(StringConstants.psCPUCommand.rawValue).components(separatedBy: StringConstants.emptySeparator.rawValue).map { $0.trimmingCharacters(in: .whitespaces) }
         } catch let error {
             Log.error(error.localizedDescription)
         }
-
-        do {
-            try cpus = safeShell("ps -eo %cpu").components(separatedBy: "\n").map { $0.trimmingCharacters(in: .whitespaces)}
-        }
-        catch let error {
-            Log.error(error.localizedDescription)
-        }
+    }
+    
+    private func makeArrayForCSV() {
+        arrayForCSV = []
         
-        var index = 0
-        for i in pids {
+        getPidsAndCPUs()
+        
+        for (index, currentPid) in pids.enumerated() {
             var dct = Dictionary<String, String>()
-            dct.updateValue(cpus[index], forKey: i)
+            dct.updateValue(cpus[index], forKey: currentPid)
             arrayForCSV.append(dct)
-            index += 1
         }
         
         arrayForCSV.removeFirst()
         arrayForCSV.removeLast()
     }
 
+    private func createNewCSVFile(stringCSV: String) {
+        do {
+            let path = try FileManager.default.url(for: .documentDirectory, in: .allDomainsMask, appropriateFor: nil, create: false)
+            let fileURL = path.appendingPathComponent(StringConstants.csvFileName.rawValue)
+            try stringCSV.write(to: fileURL, atomically: true, encoding: .utf8)
+        } catch let error {
+            Log.error(error.localizedDescription)
+        }
+    }
+    
     private func createCSV(from recArray:[Dictionary<String, String>]) {
-        var csvString = "\("PID"),\("%CPU")\n"
+        var csvString = "\(StringConstants.pidHeader.rawValue),\(StringConstants.cpuHeader)\(StringConstants.emptySeparator.rawValue)"
         for dct in recArray {
-            csvString = csvString
-                .appending("\((dct.keys).joined()) ,\((dct.values).joined())\n")
+            csvString = csvString.appending("\((dct.keys).joined()) ,\((dct.values).joined())\(StringConstants.emptySeparator.rawValue)")
         }
         
-        let fileManager = FileManager.default
-        do {
-            let path = try fileManager.url(for: .documentDirectory, in: .allDomainsMask, appropriateFor: nil, create: false)
-            let fileURL = path.appendingPathComponent("CSVQuitForce.csv")
-            try csvString.write(to: fileURL, atomically: true, encoding: .utf8)
-        } catch {
-            Log.error("Error creating file")
-        }
+        createNewCSVFile(stringCSV: csvString)
     }
 
     private func readDataFromCSV(fileName: String) -> String? {
-        guard let dir = FileManager.default.urls(for: .documentDirectory, in: .allDomainsMask).first else {
+        guard let directory = FileManager.default.urls(for: .documentDirectory, in: .allDomainsMask).first else {
             return nil
         }
-        let fileURL = dir.appendingPathComponent(fileName)
+        
+        let fileURL = directory.appendingPathComponent(fileName)
+        
         do {
             let contents = try String(contentsOf: fileURL, encoding: .utf8)
             return contents
         } catch {
-            Log.error("File Read Error for file \(fileName)")
+            Log.error(StringConstants.fileReadError.rawValue + fileName)
             return nil
         }
     }
 
     func getCPU() -> [[String: String]] {
         makeArrayForCSV()
+        
         createCSV(from: arrayForCSV)
-        let data = readDataFromCSV(fileName: "CSVQuitForce.csv")
+        
+        let data = readDataFromCSV(fileName: StringConstants.csvFileName.rawValue)
         
         var result: [[String: String]] = []
-        let rows = data!.components(separatedBy: "\n")
+        let rows = (data ?? StringConstants.noData.rawValue).components(separatedBy: StringConstants.emptySeparator.rawValue)
+        
         for row in rows {
             let newRow = row.replacingOccurrences(of: " ", with: "")
-            let columns = newRow.components(separatedBy: CharacterSet(charactersIn: ","))
+            let columns = newRow.components(separatedBy: CharacterSet(charactersIn: StringConstants.commaSeparator.rawValue))
             var dictionary = Dictionary<String, String>()
-            dictionary.updateValue(columns.last ?? "no data",
-                                   forKey: columns[0])
+            dictionary.updateValue(columns.last ?? StringConstants.noData.rawValue, forKey: columns[0])
             result.append(dictionary)
         }
+        
         result.removeLast()
+        
         return result
     }
 }
