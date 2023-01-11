@@ -12,73 +12,32 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     var statusBarItem: NSStatusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     
-    private func setupMenu() {
-        let statusMenu = NSMenu()
+    private func setupStatusButton() {
+        guard let statusButton = statusBarItem.button else { return }
+        statusButton.image = NSImage(named: StringConstants.onButtonImage.rawValue)
+    }
+    
+    private func setupInitialVC() {
+        let moduleBuilder = ModuleBuilder()
         
-        let terminateAllItem: NSMenuItem = {
-            let item = NSMenuItem(
-                title: "Terminate all",
-                action: #selector(terminateAllApps),
-                keyEquivalent: ""
-            )
-            
-            item.tag = 1
-            item.target = self
-            
-            return item
-        }()
+        let storyboard = NSStoryboard(name: NSStoryboard.Name(StringConstants.storyboardIdentifier.rawValue), bundle: .main)
+        let window = storyboard.instantiateController(withIdentifier: StringConstants.windowIdentifier.rawValue) as! NSWindowController
+        let appViewController = storyboard.instantiateController(identifier: StringConstants.appViewController.rawValue,
+                                                                 creator: { coder -> AppViewController? in
+            AppViewController(coder: coder, presenter: moduleBuilder.createMain())
+        })
         
-        let openForceQuitItem: NSMenuItem = {
-            let item = NSMenuItem(
-                title: "Open ForceQuit",
-                action: #selector(openForceQuitApp),
-                keyEquivalent: ""
-            )
-            
-            item.tag = 2
-            item.target = self
-            
-            return item
-        }()
-        
-        let quitApplicationItem: NSMenuItem = {
-            let item = NSMenuItem(title: "Quit", action: #selector(terminate), keyEquivalent: "q")
-            item.target = self
-            
-            return item
-        }()
-        
-        statusMenu.addItems(
-            terminateAllItem,
-            .separator(),
-            openForceQuitItem,
-            .separator(),
-            quitApplicationItem
-        )
-        
-        statusBarItem.menu = statusMenu
+        appViewController.presenter?.setUpAppsData()
+        appViewController.presenter?.view = appViewController
+    
+        window.contentViewController = appViewController
+        window.showWindow(self)
     }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        let moduleBuilder = ModuleBuilder()
-        
-        let storyboard = NSStoryboard(name: NSStoryboard.Name("Main"), bundle: .main)
-        let window  = storyboard.instantiateController(withIdentifier: "MainWindow") as! NSWindowController
-        let appViewController = storyboard.instantiateController(identifier: "AppViewController", creator: { coder -> AppViewController? in
-            AppViewController(coder: coder, presenter: moduleBuilder.createMain())
-        })
-        appViewController.presenter?.setUpAppsData()
-        appViewController.presenter?.view = appViewController
-        window.contentViewController = appViewController
-        window.showWindow(self)
-        
-        guard let statusButton = statusBarItem.button else { return }
-        statusButton.image = NSImage(named: "OnButton")
-        setupMenu()
-    }
-    
-    func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
-        return true
+        setupInitialVC()
+        setupStatusButton()
+        setupMenu(statusBarItem: statusBarItem)
     }
     
     @objc

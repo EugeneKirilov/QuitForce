@@ -11,6 +11,7 @@ import Cocoa
 protocol AppViewProtocol: AnyObject {
     var cells: [TableViewCell] { get set }
     var selectAllButton: NSButton! { get set }
+    
     func isActivateQuitButton(flag: Bool)
     func isSelectAllButton(flag: Bool)
     func updateSuccessful()
@@ -18,14 +19,15 @@ protocol AppViewProtocol: AnyObject {
 
 protocol MainPresenterProtocol: AnyObject {
     init(cpuLoader: CPULoaderProtocol, timerSetupper: TimerSetupperProtocol)
+    
     var view: AppViewProtocol? { get set }
     var apps: [AppsListItem]? { get set }
     var quitingApps: [AppsListItem] { get set }
     var appSearchString: String? { get set }
+    
     func setUpAppsData()
     func buttonsCheck()
-    func appCheck(appListItem: inout AppsListItem?,
-                  presenter: inout MainPresenterProtocol?)
+    func appCheck(appListItem: inout AppsListItem?, presenter: inout MainPresenterProtocol?)
     func forceQuitApps()
     func tapOnSelectAllButton(cells: inout [TableViewCell])
     func searchApps()
@@ -34,32 +36,40 @@ protocol MainPresenterProtocol: AnyObject {
 }
 
 final class MainPresenter: MainPresenterProtocol {
-    weak var view: AppViewProtocol?
     let cpuLoader: CPULoaderProtocol
     let timerSetupper: TimerSetupperProtocol
-    var apps: [AppsListItem]?
-    var quitingApps = [AppsListItem]()
-    var appSearchString: String?
     
     private var temporaryApps = [AppsListItem]()
     private var appsBefore = [AppsListItem]()
+    
+    weak var view: AppViewProtocol?
+    
+    var apps: [AppsListItem]?
+    var quitingApps = [AppsListItem]()
+    var appSearchString: String?
     
     init(cpuLoader: CPULoaderProtocol, timerSetupper: TimerSetupperProtocol) {
         self.cpuLoader = cpuLoader
         self.timerSetupper = timerSetupper
     }
     
+    private func parseOpenApps(openApps: [NSRunningApplication], cpus: [[String : String]]) {
+        for app in openApps where app.activationPolicy == .regular {
+            let cpuCount = cpus.filter{ $0[String(app.processIdentifier)] != nil }.first?.values.joined()
+            self.apps?.append(AppsListItem(app: App(name: app.localizedName ?? StringConstants.noData.rawValue,
+                                                    icon: app.icon ?? NSImage(),
+                                                    cpu: cpuCount ?? StringConstants.noData.rawValue,
+                                                    pid: String(app.processIdentifier))))
+        }
+    }
+    
     func setUpAppsData() {
         self.apps = []
         let openApps = NSWorkspace.shared.runningApplications
         let cpus = cpuLoader.getCPU()
-        for app in openApps where app.activationPolicy == .regular {
-            let cpuCount = cpus.filter{ $0[String(app.processIdentifier)] != nil }.first?.values.joined()
-            self.apps?.append(AppsListItem(app: App(name: app.localizedName ?? "No data",
-                                                    icon: app.icon ?? NSImage(),
-                                                    cpu: cpuCount ?? "No data",
-                                                    pid: String(app.processIdentifier))))
-        }
+        
+        parseOpenApps(openApps: openApps, cpus: cpus)
+        
         apps = apps?.sorted { $0.app.name.lowercased() < $1.app.name.lowercased() }
         temporaryApps = apps ?? [AppsListItem]()
     }
@@ -127,7 +137,7 @@ final class MainPresenter: MainPresenterProtocol {
     func tapOnSelectAllButton(cells: inout [TableViewCell]) {
         guard let view = view else { return }
         if cells.count == cells.filter({ $0.checkbox.state == .on }).count {
-            view.selectAllButton.title = "Select all"
+            view.selectAllButton.title = StringConstants.selectAllButtonText.rawValue
         
             for cell in cells {
                 cell.checkbox.state = .off
@@ -137,7 +147,7 @@ final class MainPresenter: MainPresenterProtocol {
             }
             
         } else {
-            view.selectAllButton.title = "Deselect all"
+            view.selectAllButton.title = StringConstants.deselectAllButtonText.rawValue
             
             for cell in cells {
                 cell.checkbox.state = .on
@@ -173,9 +183,9 @@ final class MainPresenter: MainPresenterProtocol {
         
         for app in openApps where app.activationPolicy == .regular {
             let cpuCount = cpus.filter{ $0[String(app.processIdentifier)] != nil }.first?.values.joined()
-            let appListItem = AppsListItem(app: App(name: app.localizedName ?? "No data",
+            let appListItem = AppsListItem(app: App(name: app.localizedName ?? StringConstants.noData.rawValue,
                                                     icon: app.icon ?? NSImage(),
-                                                    cpu: cpuCount ?? "No data",
+                                                    cpu: cpuCount ?? StringConstants.noData.rawValue,
                                                     pid: String(app.processIdentifier)))
             tmpArray.append(appListItem)
 
