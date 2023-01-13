@@ -23,11 +23,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let storyboard = NSStoryboard(name: NSStoryboard.Name(StringConstants.storyboardIdentifier.rawValue), bundle: .main)
         let window = storyboard.instantiateController(withIdentifier: StringConstants.windowIdentifier.rawValue) as! NSWindowController
         let appViewController = storyboard.instantiateController(identifier: StringConstants.appViewController.rawValue,
-                                                                 creator: { coder -> AppViewController? in
-            AppViewController(coder: coder, presenter: moduleBuilder.createMain())
+                                                                 creator: { coder -> MainViewController? in
+            MainViewController(coder: coder, presenter: moduleBuilder.createMain())
         })
         
-        appViewController.presenter?.setUpAppsData()
+        appViewController.presenter?.setupAppsData()
         appViewController.presenter?.view = appViewController
     
         window.contentViewController = appViewController

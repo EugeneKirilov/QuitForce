@@ -10,36 +10,48 @@
 		E40EA18229655CC30055C297 /* TimerSetupper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40EA18129655CC30055C297 /* TimerSetupper.swift */; };
 		E45160D9295DA72B00791D8F /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45160D8295DA72B00791D8F /* AppModel.swift */; };
 		E4786B01296EE93400CB24E7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4786B00296EE93400CB24E7 /* Constants.swift */; };
-		E4786B03296EE9B200CB24E7 /* AppDelegate + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4786B02296EE9B200CB24E7 /* AppDelegate + Extension.swift */; };
+		E4786B03296EE9B200CB24E7 /* AppDelegate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4786B02296EE9B200CB24E7 /* AppDelegate+Extension.swift */; };
+		E4834F052970307D00117146 /* AppCellPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4834F042970307D00117146 /* AppCellPresenter.swift */; };
+		E4834F0F2970564D00117146 /* AppTableViewCellProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4834F0E2970564D00117146 /* AppTableViewCellProtocols.swift */; };
+		E499D87929713E4500D614E7 /* MainPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E499D87829713E4500D614E7 /* MainPresenterProtocol.swift */; };
+		E499D87B29713E8200D614E7 /* AppViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E499D87A29713E8200D614E7 /* AppViewProtocol.swift */; };
+		E499D87D29714CA300D614E7 /* AppCellViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E499D87C29714CA300D614E7 /* AppCellViewProtocol.swift */; };
+		E499D8802971814D00D614E7 /* NSButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E499D87F2971814D00D614E7 /* NSButton+Extension.swift */; };
 		E4A9ED7F295DA42200B3CDC2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A9ED7E295DA42200B3CDC2 /* AppDelegate.swift */; };
-		E4A9ED81295DA42200B3CDC2 /* AppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A9ED80295DA42200B3CDC2 /* AppViewController.swift */; };
+		E4A9ED81295DA42200B3CDC2 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A9ED80295DA42200B3CDC2 /* MainViewController.swift */; };
 		E4A9ED83295DA42200B3CDC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4A9ED82295DA42200B3CDC2 /* Assets.xcassets */; };
 		E4A9ED86295DA42200B3CDC2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4A9ED84295DA42200B3CDC2 /* Main.storyboard */; };
-		E4B409E82962BCF300B0219F /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B409E72962BCF300B0219F /* TableViewCell.swift */; };
+		E4B409E82962BCF300B0219F /* AppTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B409E72962BCF300B0219F /* AppTableCellView.swift */; };
 		E4B409EA2962C3E900B0219F /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B409E92962C3E900B0219F /* MainPresenter.swift */; };
 		E4B409ED2962C9BD00B0219F /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B409EC2962C9BD00B0219F /* ModuleBuilder.swift */; };
 		E4B409EF2962D31700B0219F /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B409EE2962D31700B0219F /* Logger.swift */; };
 		E4B409F12962D6FA00B0219F /* CPULoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B409F02962D6FA00B0219F /* CPULoader.swift */; };
-		E4EC7A33296455FB000D320D /* NSMenu + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EC7A32296455FB000D320D /* NSMenu + Extension.swift */; };
+		E4EC7A33296455FB000D320D /* NSMenu+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EC7A32296455FB000D320D /* NSMenu+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E40EA18129655CC30055C297 /* TimerSetupper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSetupper.swift; sourceTree = "<group>"; };
 		E45160D8295DA72B00791D8F /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		E4786B00296EE93400CB24E7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		E4786B02296EE9B200CB24E7 /* AppDelegate + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate + Extension.swift"; sourceTree = "<group>"; };
+		E4786B02296EE9B200CB24E7 /* AppDelegate+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Extension.swift"; sourceTree = "<group>"; };
+		E4834F042970307D00117146 /* AppCellPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCellPresenter.swift; sourceTree = "<group>"; };
+		E4834F0E2970564D00117146 /* AppTableViewCellProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTableViewCellProtocols.swift; sourceTree = "<group>"; };
+		E499D87829713E4500D614E7 /* MainPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenterProtocol.swift; sourceTree = "<group>"; };
+		E499D87A29713E8200D614E7 /* AppViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewProtocol.swift; sourceTree = "<group>"; };
+		E499D87C29714CA300D614E7 /* AppCellViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCellViewProtocol.swift; sourceTree = "<group>"; };
+		E499D87F2971814D00D614E7 /* NSButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSButton+Extension.swift"; sourceTree = "<group>"; };
 		E4A9ED7B295DA42200B3CDC2 /* QuitForce.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuitForce.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4A9ED7E295DA42200B3CDC2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E4A9ED80295DA42200B3CDC2 /* AppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewController.swift; sourceTree = "<group>"; };
+		E4A9ED80295DA42200B3CDC2 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		E4A9ED82295DA42200B3CDC2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E4A9ED85295DA42200B3CDC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E4A9ED87295DA42200B3CDC2 /* QuitForce.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QuitForce.entitlements; sourceTree = "<group>"; };
-		E4B409E72962BCF300B0219F /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		E4B409E72962BCF300B0219F /* AppTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTableCellView.swift; sourceTree = "<group>"; };
 		E4B409E92962C3E900B0219F /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		E4B409EC2962C9BD00B0219F /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
 		E4B409EE2962D31700B0219F /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		E4B409F02962D6FA00B0219F /* CPULoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPULoader.swift; sourceTree = "<group>"; };
-		E4EC7A32296455FB000D320D /* NSMenu + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMenu + Extension.swift"; sourceTree = "<group>"; };
+		E4EC7A32296455FB000D320D /* NSMenu+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMenu+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,12 +65,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E45160D3295DA55700791D8F /* Application */ = {
+		E45160D3295DA55700791D8F /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
 				E4A9ED7E295DA42200B3CDC2 /* AppDelegate.swift */,
 			);
-			path = Application;
+			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
 		E45160D4295DA57800791D8F /* Resources */ = {
@@ -71,30 +83,86 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		E45160D5295DA59E00791D8F /* View */ = {
+		E4834F062970551900117146 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				E4A9ED84295DA42200B3CDC2 /* Main.storyboard */,
-				E4A9ED80295DA42200B3CDC2 /* AppViewController.swift */,
-				E4B409E72962BCF300B0219F /* TableViewCell.swift */,
+				E4834F072970553400117146 /* MainFlow */,
 			);
-			path = View;
+			path = Modules;
 			sourceTree = "<group>";
 		};
-		E45160D6295DA5A800791D8F /* Model */ = {
+		E4834F072970553400117146 /* MainFlow */ = {
+			isa = PBXGroup;
+			children = (
+				E4834F092970557E00117146 /* MainFlowHelpers */,
+				E4834F082970555700117146 /* MainFlowCell */,
+				E4A9ED80295DA42200B3CDC2 /* MainViewController.swift */,
+				E4B409E92962C3E900B0219F /* MainPresenter.swift */,
+				E499D87A29713E8200D614E7 /* AppViewProtocol.swift */,
+				E499D87829713E4500D614E7 /* MainPresenterProtocol.swift */,
+				E4A9ED84295DA42200B3CDC2 /* Main.storyboard */,
+			);
+			path = MainFlow;
+			sourceTree = "<group>";
+		};
+		E4834F082970555700117146 /* MainFlowCell */ = {
+			isa = PBXGroup;
+			children = (
+				E4B409E72962BCF300B0219F /* AppTableCellView.swift */,
+				E4834F042970307D00117146 /* AppCellPresenter.swift */,
+				E4834F0E2970564D00117146 /* AppTableViewCellProtocols.swift */,
+				E499D87C29714CA300D614E7 /* AppCellViewProtocol.swift */,
+			);
+			path = MainFlowCell;
+			sourceTree = "<group>";
+		};
+		E4834F092970557E00117146 /* MainFlowHelpers */ = {
 			isa = PBXGroup;
 			children = (
 				E45160D8295DA72B00791D8F /* AppModel.swift */,
 			);
-			path = Model;
+			path = MainFlowHelpers;
 			sourceTree = "<group>";
 		};
-		E45160D7295DA5B700791D8F /* Presenter */ = {
+		E4834F0A2970559900117146 /* Builder */ = {
 			isa = PBXGroup;
 			children = (
-				E4B409E92962C3E900B0219F /* MainPresenter.swift */,
+				E4B409EC2962C9BD00B0219F /* ModuleBuilder.swift */,
 			);
-			path = Presenter;
+			path = Builder;
+			sourceTree = "<group>";
+		};
+		E4834F0B297055C100117146 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				E40EA18129655CC30055C297 /* TimerSetupper.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		E4834F0C297055D900117146 /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				E4B409EE2962D31700B0219F /* Logger.swift */,
+			);
+			path = Logger;
+			sourceTree = "<group>";
+		};
+		E4834F0D297055E200117146 /* CPU */ = {
+			isa = PBXGroup;
+			children = (
+				E4B409F02962D6FA00B0219F /* CPULoader.swift */,
+			);
+			path = CPU;
+			sourceTree = "<group>";
+		};
+		E499D87E2971689C00D614E7 /* Cocoa */ = {
+			isa = PBXGroup;
+			children = (
+				E4EC7A32296455FB000D320D /* NSMenu+Extension.swift */,
+				E499D87F2971814D00D614E7 /* NSButton+Extension.swift */,
+			);
+			path = Cocoa;
 			sourceTree = "<group>";
 		};
 		E4A9ED72295DA42200B3CDC2 = {
@@ -116,33 +184,31 @@
 		E4A9ED7D295DA42200B3CDC2 /* QuitForce */ = {
 			isa = PBXGroup;
 			children = (
-				E45160D3295DA55700791D8F /* Application */,
-				E45160D6295DA5A800791D8F /* Model */,
-				E45160D5295DA59E00791D8F /* View */,
-				E45160D7295DA5B700791D8F /* Presenter */,
-				E4B409EB2962C98B00B0219F /* Helpers */,
-				E4EC7A2D29645579000D320D /* Extensions */,
+				E4834F0B297055C100117146 /* Utils */,
+				E4834F0A2970559900117146 /* Builder */,
+				E4834F062970551900117146 /* Modules */,
+				E45160D3295DA55700791D8F /* SupportingFiles */,
+				E4B409EB2962C98B00B0219F /* Services */,
 				E45160D4295DA57800791D8F /* Resources */,
+				E4EC7A2D29645579000D320D /* Extensions */,
 			);
 			path = QuitForce;
 			sourceTree = "<group>";
 		};
-		E4B409EB2962C98B00B0219F /* Helpers */ = {
+		E4B409EB2962C98B00B0219F /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				E4B409EC2962C9BD00B0219F /* ModuleBuilder.swift */,
-				E4B409EE2962D31700B0219F /* Logger.swift */,
-				E4B409F02962D6FA00B0219F /* CPULoader.swift */,
-				E40EA18129655CC30055C297 /* TimerSetupper.swift */,
+				E4834F0D297055E200117146 /* CPU */,
+				E4834F0C297055D900117146 /* Logger */,
 			);
-			path = Helpers;
+			path = Services;
 			sourceTree = "<group>";
 		};
 		E4EC7A2D29645579000D320D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				E4EC7A32296455FB000D320D /* NSMenu + Extension.swift */,
-				E4786B02296EE9B200CB24E7 /* AppDelegate + Extension.swift */,
+				E499D87E2971689C00D614E7 /* Cocoa */,
+				E4786B02296EE9B200CB24E7 /* AppDelegate+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -217,17 +283,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E499D87929713E4500D614E7 /* MainPresenterProtocol.swift in Sources */,
 				E4B409EA2962C3E900B0219F /* MainPresenter.swift in Sources */,
+				E4834F0F2970564D00117146 /* AppTableViewCellProtocols.swift in Sources */,
 				E4786B01296EE93400CB24E7 /* Constants.swift in Sources */,
-				E4EC7A33296455FB000D320D /* NSMenu + Extension.swift in Sources */,
+				E4EC7A33296455FB000D320D /* NSMenu+Extension.swift in Sources */,
 				E4B409F12962D6FA00B0219F /* CPULoader.swift in Sources */,
-				E4A9ED81295DA42200B3CDC2 /* AppViewController.swift in Sources */,
-				E4B409E82962BCF300B0219F /* TableViewCell.swift in Sources */,
+				E4A9ED81295DA42200B3CDC2 /* MainViewController.swift in Sources */,
+				E4B409E82962BCF300B0219F /* AppTableCellView.swift in Sources */,
 				E40EA18229655CC30055C297 /* TimerSetupper.swift in Sources */,
 				E45160D9295DA72B00791D8F /* AppModel.swift in Sources */,
+				E499D87D29714CA300D614E7 /* AppCellViewProtocol.swift in Sources */,
 				E4B409EF2962D31700B0219F /* Logger.swift in Sources */,
+				E4834F052970307D00117146 /* AppCellPresenter.swift in Sources */,
 				E4A9ED7F295DA42200B3CDC2 /* AppDelegate.swift in Sources */,
-				E4786B03296EE9B200CB24E7 /* AppDelegate + Extension.swift in Sources */,
+				E4786B03296EE9B200CB24E7 /* AppDelegate+Extension.swift in Sources */,
+				E499D87B29713E8200D614E7 /* AppViewProtocol.swift in Sources */,
+				E499D8802971814D00D614E7 /* NSButton+Extension.swift in Sources */,
 				E4B409ED2962C9BD00B0219F /* ModuleBuilder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
